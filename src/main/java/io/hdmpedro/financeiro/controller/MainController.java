@@ -27,7 +27,7 @@ public class MainController {
 
         this.transacaoController = new TransacaoController(transacaoService, categoriaService);
         this.categoriaController = new CategoriaController(categoriaService);
-        this.reservaService = new ReservaController(reservaService);
+        this.reservaController = new ReservaController(reservaService);
         this.fechamentoMesController = new FechamentoMesController(
                 fechamentoMesService, reservaService, transacaoService);
     }
@@ -55,7 +55,7 @@ public class MainController {
     }
 
     public ReservaController getReserveController() {
-        return reservaService;
+        return reservaController;
     }
 
     public FechamentoMesController getMonthlyClosureController() {

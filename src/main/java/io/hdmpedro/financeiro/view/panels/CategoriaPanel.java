@@ -87,7 +87,7 @@ public class CategoriaPanel extends JPanel implements MainFrame.RefreshablePanel
         JPanel contentPanel = new JPanel(new GridBagLayout());
         contentPanel.setBackground(Color.WHITE);
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(10, 0, 10, 10);
+        gbc.insets = new Insets(10, 10, 10, 10);
         gbc.anchor = GridBagConstraints.WEST;
 
         gbc.gridx = 0; gbc.gridy = 0;
@@ -136,7 +136,7 @@ public class CategoriaPanel extends JPanel implements MainFrame.RefreshablePanel
         contentPanel.add(updateButton, gbc);
 
         card.add(headerPanel, BorderLayout.NORTH);
-        card.add(contentPanel, BorderLayout.CENTER);
+        card.add(contentPanel, BorderLayout.WEST);
 
         return card;
     }
