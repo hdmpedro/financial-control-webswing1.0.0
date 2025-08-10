@@ -30,3 +30,13 @@
 10-ago.-2025-13:29:15.029 | LOGIN | SUCCESS | anonym | /financial-control | 127.0.0.1 | protocol: http | module: org.webswing.server.core.services.security.modules.anonym.AnonymSecurityModule
 10-ago.-2025-13:29:16.583 | INSTANCE | STARTED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_8a6e26ed29f3_1754843355399
 10-ago.-2025-13:34:35.733 | INSTANCE | FINISHED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_8a6e26ed29f3_1754843355399
+10-ago.-2025-16:02:37.761 | LOGIN | SUCCESS | anonym | /financial-control | 127.0.0.1 | protocol: http | module: org.webswing.server.core.services.security.modules.anonym.AnonymSecurityModule
+10-ago.-2025-16:02:39.700 | INSTANCE | STARTED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_889194a4dee4_1754852558214
+10-ago.-2025-16:10:24.455 | LOGIN | SUCCESS | anonym | /financial-control | 127.0.0.1 | protocol: http | module: org.webswing.server.core.services.security.modules.anonym.AnonymSecurityModule
+10-ago.-2025-16:10:25.494 | INSTANCE | STARTED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_fced5e3bc641_1754853024474
+10-ago.-2025-16:14:56.779 | INSTANCE | FINISHED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_fced5e3bc641_1754853024474
+10-ago.-2025-16:14:56.936 | INSTANCE | FINISHED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_889194a4dee4_1754852558214
+10-ago.-2025-16:26:50.249 | LOGIN | SUCCESS | anonym | /financial-control | 10.0.0.112 | protocol: http | module: org.webswing.server.core.services.security.modules.anonym.AnonymSecurityModule
+10-ago.-2025-16:26:51.553 | INSTANCE | STARTED | anonym | /financial-control | 10.0.0.112 | instanceId: financial_control_anonym_b8cfaecf1493_1754854010373
+10-ago.-2025-16:27:51.639 | LOGIN | SUCCESS | anonym | /financial-control | 10.0.0.175 | protocol: http | module: org.webswing.server.core.services.security.modules.anonym.AnonymSecurityModule
+10-ago.-2025-16:27:52.855 | INSTANCE | STARTED | anonym | /financial-control | 10.0.0.175 | instanceId: financial_control_anonym_823f35a58b26_1754854071959

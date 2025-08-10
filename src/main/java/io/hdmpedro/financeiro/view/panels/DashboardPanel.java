@@ -9,6 +9,9 @@ import io.hdmpedro.financeiro.util.TemaCores;
 import io.hdmpedro.financeiro.util.MoedaUtil;
 import io.hdmpedro.financeiro.view.MainFrame;
 import io.hdmpedro.financeiro.view.components.BotaoModerno;
+import io.hdmpedro.financeiro.view.dialogs.AdicionarReservaDialog;
+import io.hdmpedro.financeiro.view.dialogs.FecharMesDialog;
+import io.hdmpedro.financeiro.view.dialogs.NovaTransacaoDialog;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,6 +30,7 @@ public class DashboardPanel extends JPanel implements MainFrame.RefreshablePanel
     private JPanel alertsPanel;
     private JPanel quickActionsPanel;
     private JPanel summaryCardsPanel;
+
 
     public DashboardPanel(MainController mainController) {
         this.mainController = mainController;
@@ -47,6 +51,7 @@ public class DashboardPanel extends JPanel implements MainFrame.RefreshablePanel
         createQuickActions();
         createAlertsPanel();
     }
+
 
     private void createSummaryCards() {
         summaryCardsPanel = new JPanel(new GridLayout(1, 4, 20, 0));
@@ -130,14 +135,36 @@ public class DashboardPanel extends JPanel implements MainFrame.RefreshablePanel
     }
 
     private void showAddTransactionDialog() {
+        NovaTransacaoDialog dialog = new NovaTransacaoDialog(
+                this,
+                mainController.getTransactionController(),
+                () -> mainController.refreshAllViews()
+        );
+        dialog.setVisible(true);
+
 
     }
 
     private void showAddToReserveDialog() {
+        AdicionarReservaDialog dialog = new AdicionarReservaDialog(
+                this,
+                mainController.getReserveController(),
+                () -> mainController.refreshAllViews()
+        );
+        dialog.setVisible(true);
+
 
     }
 
     private void showCloseMonthDialog() {
+
+        FecharMesDialog dialog = new FecharMesDialog(
+                this,
+                mainController.getMonthlyClosureController(),
+                () -> mainController.refreshAllViews()
+        );
+        dialog.setVisible(true);
+    ;
 
     }
 
