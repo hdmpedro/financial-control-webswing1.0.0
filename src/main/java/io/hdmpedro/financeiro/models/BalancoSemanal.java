@@ -5,75 +5,75 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class BalancoSemanal {
-    private int weekNumber;
-    private LocalDate startDate;
-    private LocalDate endDate;
-    private BigDecimal income;
-    private BigDecimal expenses;
-    private BigDecimal balance;
+    private int numeroSemana;
+    private LocalDate dataInicio;
+    private LocalDate dataFim;
+    private BigDecimal renda;
+    private BigDecimal despesas;
+    private BigDecimal balanco;
 
     public BalancoSemanal() {
-        this.income = BigDecimal.ZERO;
-        this.expenses = BigDecimal.ZERO;
-        this.balance = BigDecimal.ZERO;
+        this.renda = BigDecimal.ZERO;
+        this.despesas = BigDecimal.ZERO;
+        this.balanco = BigDecimal.ZERO;
     }
 
-    public BalancoSemanal(int weekNumber, LocalDate startDate, LocalDate endDate) {
+    public BalancoSemanal(int numeroSemana, LocalDate dataInicio, LocalDate dataFim) {
         this();
-        this.weekNumber = weekNumber;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.numeroSemana = numeroSemana;
+        this.dataInicio = dataInicio;
+        this.dataFim = dataFim;
     }
 
     public void calculateBalance() {
-        this.balance = income.subtract(expenses);
+        this.balanco = renda.subtract(despesas);
     }
 
-    public int getWeekNumber() {
-        return weekNumber;
+    public int getNumeroSemana() {
+        return numeroSemana;
     }
 
-    public void setWeekNumber(int weekNumber) {
-        this.weekNumber = weekNumber;
+    public void setNumeroSemana(int numeroSemana) {
+        this.numeroSemana = numeroSemana;
     }
 
-    public BigDecimal getBalance() {
-        return balance;
+    public BigDecimal getBalanco() {
+        return balanco;
     }
 
-    public void setBalance(BigDecimal balance) {
-        this.balance = balance;
+    public void setBalanco(BigDecimal balanco) {
+        this.balanco = balanco;
     }
 
-    public BigDecimal getIncome() {
-        return income;
+    public BigDecimal getRenda() {
+        return renda;
     }
 
-    public void setIncome(BigDecimal income) {
-        this.income = income;
+    public void setRenda(BigDecimal renda) {
+        this.renda = renda;
     }
 
-    public LocalDate getEndDate() {
-        return endDate;
+    public LocalDate getDataFim() {
+        return dataFim;
     }
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
+    public void setDataFim(LocalDate dataFim) {
+        this.dataFim = dataFim;
     }
 
-    public LocalDate getStartDate() {
-        return startDate;
+    public LocalDate getDataInicio() {
+        return dataInicio;
     }
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
+    public void setDataInicio(LocalDate dataInicio) {
+        this.dataInicio = dataInicio;
     }
 
-    public BigDecimal getExpenses() {
-        return expenses;
+    public BigDecimal getDespesas() {
+        return despesas;
     }
 
-    public void setExpenses(BigDecimal expenses) {
-        this.expenses = expenses;
+    public void setDespesas(BigDecimal despesas) {
+        this.despesas = despesas;
     }
 }

@@ -161,9 +161,9 @@ public class FecharMesDialog extends JDialog {
             previewRelatorio = fechamentoMesController.generatePreviewReport(mes, ano);
 
             saldoMensalLabel.setText(String.format("Saldo do Mês: R$ %.2f",
-                    previewRelatorio.getBalance()));
+                    previewRelatorio.getBalanco()));
 
-            if (previewRelatorio.getBalance().compareTo(BigDecimal.ZERO) < 0) {
+            if (previewRelatorio.getBalanco().compareTo(BigDecimal.ZERO) < 0) {
                 saldoMensalLabel.setForeground(Color.RED);
             } else {
                 saldoMensalLabel.setForeground(new Color(0, 120, 0));
@@ -179,7 +179,7 @@ public class FecharMesDialog extends JDialog {
                         showErrorMessage("Contribuição para reserva não pode ser negativa");
                         return;
                     }
-                    if (contribuicao.compareTo(previewRelatorio.getBalance()) > 0) {
+                    if (contribuicao.compareTo(previewRelatorio.getBalanco()) > 0) {
                         showErrorMessage("Contribuição não pode ser maior que o saldo do mês");
                         return;
                     }
@@ -191,20 +191,20 @@ public class FecharMesDialog extends JDialog {
 
             StringBuilder resumo = new StringBuilder();
             resumo.append(String.format("═══ FECHAMENTO DO MÊS %02d/%d ═══\n\n", mes, ano));
-            resumo.append(String.format("Total de Receitas:      R$ %,10.2f\n", previewRelatorio.getTotalIncome()));
-            resumo.append(String.format("Total de Despesas:      R$ %,10.2f\n", previewRelatorio.getTotalExpenses()));
+            resumo.append(String.format("Total de Receitas:      R$ %,10.2f\n", previewRelatorio.getRendaTotal()));
+            resumo.append(String.format("Total de Despesas:      R$ %,10.2f\n", previewRelatorio.getDespesasTotal()));
             resumo.append("─".repeat(40)).append("\n");
-            resumo.append(String.format("Saldo do Mês:           R$ %,10.2f\n\n", previewRelatorio.getBalance()));
+            resumo.append(String.format("Saldo do Mês:           R$ %,10.2f\n\n", previewRelatorio.getBalanco()));
 
             if (contribuicao.compareTo(BigDecimal.ZERO) > 0) {
                 resumo.append(String.format("Contribuição p/ Reserva: R$ %,10.2f\n", contribuicao));
-                BigDecimal saldoFinal = previewRelatorio.getBalance().subtract(contribuicao);
+                BigDecimal saldoFinal = previewRelatorio.getBalanco().subtract(contribuicao);
                 resumo.append("─".repeat(40)).append("\n");
                 resumo.append(String.format("Saldo Final:            R$ %,10.2f\n", saldoFinal));
             }
 
             resumo.append("\n═══ RESUMO POR CATEGORIA ═══\n");
-            previewRelatorio.getExpensesByCategory().entrySet().stream()
+            previewRelatorio.getGastosPorCategoria().entrySet().stream()
                     .sorted((e1, e2) -> e2.getValue().compareTo(e1.getValue()))
                     .forEach(entry -> {
                         resumo.append(String.format("%-20s: R$ %,8.2f\n",

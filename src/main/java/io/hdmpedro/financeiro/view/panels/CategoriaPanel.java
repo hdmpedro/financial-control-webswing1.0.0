@@ -72,12 +72,12 @@ public class CategoriaPanel extends JPanel implements MainFrame.RefreshablePanel
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setBackground(Color.WHITE);
 
-        JLabel nameLabel = new JLabel(categoria.getType().getDisplayName());
+        JLabel nameLabel = new JLabel(categoria.getTipo().getDisplayName());
         nameLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
         nameLabel.setForeground(TemaCores.TEXT_PRIMARY);
 
         JPanel colorIndicator = new JPanel();
-        colorIndicator.setBackground(Color.decode(categoria.getType().getColor()));
+        colorIndicator.setBackground(Color.decode(categoria.getTipo().getColor()));
         colorIndicator.setPreferredSize(new Dimension(4, 20));
 
         headerPanel.add(colorIndicator, BorderLayout.WEST);
@@ -94,7 +94,7 @@ public class CategoriaPanel extends JPanel implements MainFrame.RefreshablePanel
         contentPanel.add(new JLabel("Orçamento:"), gbc);
 
         CampoTextoModerno budgetField = new CampoTextoModerno(
-                MoedaUtil.format(categoria.getBudgetLimit()));
+                MoedaUtil.format(categoria.getOrcamentoLimite()));
         budgetField.setPreferredSize(new Dimension(150, 35));
         gbc.gridx = 1;
         contentPanel.add(budgetField, gbc);
@@ -102,7 +102,7 @@ public class CategoriaPanel extends JPanel implements MainFrame.RefreshablePanel
         gbc.gridx = 0; gbc.gridy = 1;
         contentPanel.add(new JLabel("Gasto:"), gbc);
 
-        JLabel spentLabel = new JLabel(MoedaUtil.format(categoria.getCurrentSpent()));
+        JLabel spentLabel = new JLabel(MoedaUtil.format(categoria.getGastoAtual()));
         spentLabel.setForeground(TemaCores.ERROR);
         gbc.gridx = 1;
         contentPanel.add(spentLabel, gbc);
@@ -130,7 +130,7 @@ public class CategoriaPanel extends JPanel implements MainFrame.RefreshablePanel
         contentPanel.add(progressBar, gbc);
 
         BotaoModerno updateButton = new BotaoModerno("Atualizar Orçamento", TemaCores.PRIMARY);
-        updateButton.addActionListener(e -> updateCategoryBudget(categoria.getType(), budgetField));
+        updateButton.addActionListener(e -> updateCategoryBudget(categoria.getTipo(), budgetField));
 
         gbc.gridy = 4; gbc.fill = GridBagConstraints.NONE; gbc.anchor = GridBagConstraints.EAST;
         contentPanel.add(updateButton, gbc);

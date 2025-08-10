@@ -216,9 +216,9 @@ public class ReservaPanel extends JPanel implements MainFrame.RefreshablePanel {
         public Object getValueAt(int rowIndex, int columnIndex) {
             Reserva reserva = reservas.get(rowIndex);
             return switch (columnIndex) {
-                case 0 -> DataUtil.formatDate(reserva.getDate());
-                case 1 -> MoedaUtil.format(reserva.getAmount());
-                case 2 -> reserva.getDescription();
+                case 0 -> DataUtil.formatDate(reserva.getData());
+                case 1 -> MoedaUtil.format(reserva.getQuantia());
+                case 2 -> reserva.getDescricao();
                 default -> null;
             };
         }

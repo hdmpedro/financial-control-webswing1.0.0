@@ -11,82 +11,82 @@ import java.math.BigDecimal;
 
 public class Transacao {
     private Long id;
-    private String description;
-    private BigDecimal amount;
-    private TransacaoTipo type;
-    private CategoriaTipo category;
-    private LocalDate date;
-    private LocalDateTime createdAt;
-    private String notes;
+    private String descricao;
+    private BigDecimal quantia;
+    private TransacaoTipo transacaoTipo;
+    private CategoriaTipo categoriaTipo;
+    private LocalDate data;
+    private LocalDateTime criadoEm;
+    private String notas;
 
     public Transacao() {
-        this.createdAt = LocalDateTime.now();
+        this.criadoEm = LocalDateTime.now();
     }
 
-    public Transacao(String description, BigDecimal amount, TransacaoTipo type,
-                     CategoriaTipo category, LocalDate date) {
+    public Transacao(String descricao, BigDecimal quantia, TransacaoTipo transacaoTipo,
+                     CategoriaTipo categoriaTipo, LocalDate data) {
         this();
-        this.description = description;
-        this.amount = amount;
-        this.type = type;
-        this.category = category;
-        this.date = date;
+        this.descricao = descricao;
+        this.quantia = quantia;
+        this.transacaoTipo = transacaoTipo;
+        this.categoriaTipo = categoriaTipo;
+        this.data = data;
     }
 
-    public String getNotes() {
-        return notes;
+    public String getNotas() {
+        return notas;
     }
 
-    public void setNotes(String notes) {
-        this.notes = notes;
+    public void setNotas(String notas) {
+        this.notas = notas;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getCriadoEm() {
+        return criadoEm;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCriadoEm(LocalDateTime criadoEm) {
+        this.criadoEm = criadoEm;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getData() {
+        return data;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
-    public CategoriaTipo getCategory() {
-        return category;
+    public CategoriaTipo getCategoriaTipo() {
+        return categoriaTipo;
     }
 
-    public void setCategory(CategoriaTipo category) {
-        this.category = category;
+    public void setCategoriaTipo(CategoriaTipo categoriaTipo) {
+        this.categoriaTipo = categoriaTipo;
     }
 
-    public TransacaoTipo getType() {
-        return type;
+    public TransacaoTipo getTransacaoTipo() {
+        return transacaoTipo;
     }
 
-    public void setType(TransacaoTipo type) {
-        this.type = type;
+    public void setTransacaoTipo(TransacaoTipo transacaoTipo) {
+        this.transacaoTipo = transacaoTipo;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
+    public BigDecimal getQuantia() {
+        return quantia;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+    public void setQuantia(BigDecimal quantia) {
+        this.quantia = quantia;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public Long getId() {

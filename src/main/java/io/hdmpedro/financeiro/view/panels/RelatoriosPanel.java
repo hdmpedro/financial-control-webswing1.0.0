@@ -109,7 +109,7 @@ public class RelatoriosPanel extends JPanel implements MainFrame.RefreshablePane
                 "Jul", "Ago", "Set", "Out", "Nov", "Dez"};
 
         for (RelatorioMensal report : reports) {
-            String monthName = monthNames[report.getMonth() - 1];
+            String monthName = monthNames[report.getMes() - 1];
             monthlyData.put(monthName, report.getFinalBalance());
         }
 
@@ -128,17 +128,17 @@ public class RelatoriosPanel extends JPanel implements MainFrame.RefreshablePane
         }
 
         BigDecimal totalIncome = reports.stream()
-                .map(RelatorioMensal::getTotalIncome)
+                .map(RelatorioMensal::getRendaTotal)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         BigDecimal totalExpenses = reports.stream()
-                .map(RelatorioMensal::getTotalExpenses)
+                .map(RelatorioMensal::getDespesasTotal)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         BigDecimal totalBalance = totalIncome.subtract(totalExpenses);
 
         BigDecimal totalReserveContributions = reports.stream()
-                .map(r -> r.getReserveContribution() != null ? r.getReserveContribution() : BigDecimal.ZERO)
+                .map(r -> r.getContribuicaoReserva() != null ? r.getContribuicaoReserva() : BigDecimal.ZERO)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         JPanel summaryCard = new JPanel(new GridLayout(2, 4, 20, 10));

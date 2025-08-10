@@ -34,13 +34,13 @@ public class CalendarioService {
         BalancoDiario balancoDiario = new BalancoDiario(date);
 
         BigDecimal dayIncome = transacaoService.getTransactionsByDate(date).stream()
-                .filter(t -> t.getType() == TransacaoTipo.ENTRADA)
-                .map(Transacao::getAmount)
+                .filter(t -> t.getTransacaoTipo() == TransacaoTipo.ENTRADA)
+                .map(Transacao::getQuantia)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         BigDecimal dayExpenses = transacaoService.getTransactionsByDate(date).stream()
-                .filter(t -> t.getType() == TransacaoTipo.SAIDA)
-                .map(Transacao::getAmount)
+                .filter(t -> t.getTransacaoTipo() == TransacaoTipo.SAIDA)
+                .map(Transacao::getQuantia)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         balancoDiario.setIncome(dayIncome);

@@ -30,15 +30,15 @@ public class FechamentoMesService {
         RelatorioMensal report = generateMonthlyReport(month, year);
 
         if (reserveContribution != null && reserveContribution.compareTo(BigDecimal.ZERO) > 0) {
-            if (reserveContribution.compareTo(report.getBalance()) > 0) {
+            if (reserveContribution.compareTo(report.getBalanco()) > 0) {
                 throw new IllegalArgumentException("Valor para reserva não pode ser maior que o saldo");
             }
-            report.setReserveContribution(reserveContribution);
+            report.setContribuicaoReserva(reserveContribution);
             reservaService.addMonthlyBalanceToReserve(reserveContribution, month, year);
         }
 
         report.setClosed(true);
-        report.setClosureDate(LocalDate.now());
+        report.setFechamentoData(LocalDate.now());
         closedMonths.put(key, report);
 
         return report;
@@ -52,10 +52,10 @@ public class FechamentoMesService {
         BigDecimal totalExpenses = transacaoService.getTotalByType(
                 TransacaoTipo.SAIDA, month, year);
 
-        report.setTotalIncome(totalIncome);
-        report.setTotalExpenses(totalExpenses);
-        report.setBalance(totalIncome.subtract(totalExpenses));
-        report.setExpensesByCategory(transacaoService.getExpensesByCategory(month, year));
+        report.setRendaTotal(totalIncome);
+        report.setDespesasTotal(totalExpenses);
+        report.setBalanco(totalIncome.subtract(totalExpenses));
+        report.setGastosPorCategoria(transacaoService.getExpensesByCategory(month, year));
         report.setWeeklyBalances(generateWeeklyBalances(month, year));
 
         return report;
@@ -80,18 +80,18 @@ public class FechamentoMesService {
 
             BigDecimal weekIncome = transacaoService.getTransactionsByDateRange(weekStart, weekEnd)
                     .stream()
-                    .filter(t -> t.getType() == TransacaoTipo.ENTRADA)
-                    .map(Transacao::getAmount)
+                    .filter(t -> t.getTransacaoTipo() == TransacaoTipo.ENTRADA)
+                    .map(Transacao::getQuantia)
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
 
             BigDecimal weekExpenses = transacaoService.getTransactionsByDateRange(weekStart, weekEnd)
                     .stream()
-                    .filter(t -> t.getType() == TransacaoTipo.SAIDA)
-                    .map(Transacao::getAmount)
+                    .filter(t -> t.getTransacaoTipo() == TransacaoTipo.SAIDA)
+                    .map(Transacao::getQuantia)
                     .reduce(BigDecimal.ZERO, BigDecimal::add);
 
-            balancoSemanal.setIncome(weekIncome);
-            balancoSemanal.setExpenses(weekExpenses);
+            balancoSemanal.setRenda(weekIncome);
+            balancoSemanal.setDespesas(weekExpenses);
             balancoSemanal.calculateBalance();
 
             balancoSemanals.add(balancoSemanal);
@@ -117,8 +117,8 @@ public class FechamentoMesService {
 
     public List<RelatorioMensal> getClosedMonthsByYear(int year) {
         return closedMonths.values().stream()
-                .filter(r -> r.getYear() == year)
-                .sorted(Comparator.comparing(RelatorioMensal::getMonth))
+                .filter(r -> r.getAno() == year)
+                .sorted(Comparator.comparing(RelatorioMensal::getMes))
                 .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     }
 }

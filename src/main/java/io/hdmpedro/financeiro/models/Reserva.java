@@ -7,22 +7,22 @@ import java.time.LocalDateTime;
 
 public class Reserva {
     private Long id;
-    private BigDecimal amount;
-    private String description;
-    private LocalDate date;
-    private LocalDateTime createdAt;
+    private BigDecimal quantia;
+    private String descricao;
+    private LocalDate data;
+    private LocalDateTime criadoEm;
     private boolean isFromMonthlyBalance;
 
     public Reserva() {
-        this.createdAt = LocalDateTime.now();
+        this.criadoEm = LocalDateTime.now();
         this.isFromMonthlyBalance = false;
     }
 
-    public Reserva(BigDecimal amount, String description, LocalDate date) {
+    public Reserva(BigDecimal quantia, String descricao, LocalDate data) {
         this();
-        this.amount = amount;
-        this.description = description;
-        this.date = date;
+        this.quantia = quantia;
+        this.descricao = descricao;
+        this.data = data;
     }
 
     public Long getId() {
@@ -41,36 +41,36 @@ public class Reserva {
         isFromMonthlyBalance = fromMonthlyBalance;
     }
 
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
+    public LocalDateTime getCriadoEm() {
+        return criadoEm;
     }
 
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
+    public void setCriadoEm(LocalDateTime criadoEm) {
+        this.criadoEm = criadoEm;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getData() {
+        return data;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
-    public String getDescription() {
-        return description;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public BigDecimal getAmount() {
-        return amount;
+    public BigDecimal getQuantia() {
+        return quantia;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
+    public void setQuantia(BigDecimal quantia) {
+        this.quantia = quantia;
     }
 
 }

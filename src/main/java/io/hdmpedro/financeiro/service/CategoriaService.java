@@ -23,7 +23,7 @@ public class CategoriaService {
     public Categoria updateCategoryBudget(CategoriaTipo type, BigDecimal budgetLimit) {
         Categoria categoria = categories.get(type);
         if (categoria != null) {
-            categoria.setBudgetLimit(budgetLimit);
+            categoria.setOrcamentoLimite(budgetLimit);
         }
         return categoria;
     }
@@ -31,7 +31,7 @@ public class CategoriaService {
     public void updateCategorySpent(CategoriaTipo type, BigDecimal amount) {
         Categoria categoria = categories.get(type);
         if (categoria != null) {
-            categoria.setCurrentSpent(categoria.getCurrentSpent().add(amount));
+            categoria.setGastoAtual(categoria.getGastoAtual().add(amount));
         }
     }
 
@@ -51,13 +51,13 @@ public class CategoriaService {
 
     public void resetMonthlySpending() {
         categories.values().forEach(categoria ->
-                categoria.setCurrentSpent(BigDecimal.ZERO));
+                categoria.setGastoAtual(BigDecimal.ZERO));
     }
 
     public List<Categoria> getOverBudgetCategories() {
         return categories.values().stream()
-                .filter(c -> c.getCurrentSpent().compareTo(c.getBudgetLimit()) > 0 &&
-                        c.getBudgetLimit().compareTo(BigDecimal.ZERO) > 0)
+                .filter(c -> c.getGastoAtual().compareTo(c.getOrcamentoLimite()) > 0 &&
+                        c.getOrcamentoLimite().compareTo(BigDecimal.ZERO) > 0)
                 .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     }
 

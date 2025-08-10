@@ -2200,3 +2200,59 @@ java.nio.channels.ClosedChannelException: null
 	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1164) ~[?:?]
 	at java.lang.Thread.run(Thread.java:1583) [?:?]
 2025-08-10 16:30:18,131 INFO  [qtp1975358023-68] (BrowserWebSocketConnectionEndpoint.java:187) Websocket to browser closed, session [fdc7415e-8a33-4082-831e-4fa19040d6a6], close code [1006], reason [Session Closed]!
+2025-08-10 16:35:28,724 INFO  [Webswing Websocket Handler-2] (AbstractSwingProcess.java:251) Waiting 30000ms for app process financial_control_anonym_823f35a58b26_1754854071959 to end.
+2025-08-10 16:35:28,725 INFO  [qtp1975358023-69] (ApplicationWebSocketConnectionEndpoint.java:153) Websocket closed to app, instance [financial_control_anonym_823f35a58b26_1754854071959], close code [1000], reason [shutdown]!
+2025-08-10 16:35:28,783 INFO  [Webswing Process Handler] (SwingProcessImpl.java:197) [financial_control_anonym_823f35a58b26_1754854071959] INFO: (Inactivity) Application Shutdown scheduled. (delayed by 0 seconds).
+2025-08-10 16:35:28,784 INFO  [Webswing Process Handler] (SwingProcessImpl.java:197) [financial_control_anonym_823f35a58b26_1754854071959] WARNING: Exiting application due to session disconnection timeout.
+2025-08-10 16:35:28,785 INFO  [Webswing Process Handler] (SwingProcessImpl.java:197) [financial_control_anonym_823f35a58b26_1754854071959] INFO: No shutdown listener found. Using default shutdown procedure.
+2025-08-10 16:35:28,786 INFO  [Webswing Process Handler] (SwingProcessImpl.java:197) [financial_control_anonym_823f35a58b26_1754854071959] INFO: Disconnecting websocket to server [ws://127.0.0.1:8080/financial-control/async/app-bin].
+2025-08-10 16:35:29,189 INFO  [Webswing Process Handler] (AbstractSwingProcess.java:278) [financial_control_anonym_823f35a58b26_1754854071959] app process destroying finished. 
+2025-08-10 16:35:29,191 INFO  [Process close listener thread [financial_control_anonym_823f35a58b26_1754854071959]] (SwingProcessServiceImpl.java:1138) Transfer dir for session [financial_control_anonym_823f35a58b26_1754854071959] cleared. [C:\Users\pepef\Desktop\Projetos\financial-control-webswing\financial-control-webswing\hdmpedro-financial-control-webswing1.0.0\webswing-examples-eval-24.2.5\server\apps\financial-control\anonym\upload]
+2025-08-10 16:40:34,863 ERROR [qtp1975358023-84] (ApplicationWebSocketConnectionEndpoint.java:163) Websocket error from app connection, session [566e5585-9caf-4902-8aff-02a2b1671c15], instanceId [financial_control_anonym_b8cfaecf1493_1754854010373], sessionPool [default-pool] null
+java.nio.channels.ClosedChannelException: null
+	at org.eclipse.jetty.websocket.core.internal.WebSocketSessionState.onEof(WebSocketSessionState.java:168) ~[?:?]
+	at org.eclipse.jetty.websocket.core.WebSocketCoreSession.onEof(WebSocketCoreSession.java:229) ~[?:?]
+	at org.eclipse.jetty.websocket.core.WebSocketConnection.onClose(WebSocketConnection.java:209) ~[?:?]
+	at org.eclipse.jetty.io.SelectorManager.connectionClosed(SelectorManager.java:347) ~[?:?]
+	at org.eclipse.jetty.io.ManagedSelector$DestroyEndPoint.run(ManagedSelector.java:1094) ~[?:?]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:979) ~[?:?]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1209) ~[?:?]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1164) ~[?:?]
+	at java.lang.Thread.run(Thread.java:1583) [?:?]
+2025-08-10 16:40:34,868 INFO  [qtp1975358023-84] (ApplicationWebSocketConnectionEndpoint.java:153) Websocket closed to app, instance [financial_control_anonym_b8cfaecf1493_1754854010373], close code [1006], reason [Session Closed]!
+2025-08-10 16:40:34,863 ERROR [qtp1975358023-64] (BrowserWebSocketConnectionEndpoint.java:197) Websocket error from browser connection, session [023df05f-1b18-4a48-806d-ee1e743dee68], instanceId [financial_control_anonym_b8cfaecf1493_1754854010373] null
+java.nio.channels.ClosedChannelException: null
+	at org.eclipse.jetty.websocket.core.internal.WebSocketSessionState.onEof(WebSocketSessionState.java:168) ~[?:?]
+	at org.eclipse.jetty.websocket.core.WebSocketCoreSession.onEof(WebSocketCoreSession.java:229) ~[?:?]
+	at org.eclipse.jetty.websocket.core.WebSocketConnection.onClose(WebSocketConnection.java:209) ~[?:?]
+	at org.eclipse.jetty.io.SelectorManager.connectionClosed(SelectorManager.java:347) ~[?:?]
+	at org.eclipse.jetty.io.ManagedSelector$DestroyEndPoint.run(ManagedSelector.java:1094) ~[?:?]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool.runJob(QueuedThreadPool.java:979) ~[?:?]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.doRunJob(QueuedThreadPool.java:1209) ~[?:?]
+	at org.eclipse.jetty.util.thread.QueuedThreadPool$Runner.run(QueuedThreadPool.java:1164) ~[?:?]
+	at java.lang.Thread.run(Thread.java:1583) [?:?]
+2025-08-10 16:40:34,869 INFO  [qtp1975358023-64] (BrowserWebSocketConnectionEndpoint.java:187) Websocket to browser closed, session [023df05f-1b18-4a48-806d-ee1e743dee68], close code [1006], reason [Session Closed]!
+2025-08-10 16:40:34,870 ERROR [Webswing Websocket Handler-3] (AbstractSwingProcess.java:318) Killing Application process financial_control_anonym_b8cfaecf1493_1754854010373.
+2025-08-10 16:40:34,896 INFO  [Webswing Process Handler] (SwingProcessImpl.java:197) [financial_control_anonym_b8cfaecf1493_1754854010373] INFO: Websocket closed to server [ws://127.0.0.1:8080/financial-control/async/app-bin], close code [1006], reason [Closed abnormally.]!
+2025-08-10 16:40:35,038 WARN  [Webswing Websocket Handler-3] (AbstractSwingProcess.java:378) Thread dump before killing instance [financial_control_anonym_b8cfaecf1493_1754854010373] saved to file: C:\Users\pepef\Desktop\Projetos\financial-control-webswing\financial-control-webswing\hdmpedro-financial-control-webswing1.0.0\webswing-examples-eval-24.2.5\server\datastore\dumps\ThreadDump-_financial_control-25.08.10.16.40.34-financial_control_anonym_b8cfaecf1493_1754854010373-Force+Kill+Thread+Dump.txt
+2025-08-10 16:40:35,121 INFO  [Webswing Websocket Handler-3] (AbstractSwingProcess.java:278) [financial_control_anonym_b8cfaecf1493_1754854010373] app process destroying finished. 
+2025-08-10 16:40:35,125 INFO  [webswing-server-shutdown-hook] (WebswingServlet.java:219) Webswing Server Stopped.
+2025-08-10 16:40:35,126 INFO  [Process close listener thread [financial_control_anonym_b8cfaecf1493_1754854010373]] (SwingProcessServiceImpl.java:1138) Transfer dir for session [financial_control_anonym_b8cfaecf1493_1754854010373] cleared. [C:\Users\pepef\Desktop\Projetos\financial-control-webswing\financial-control-webswing\hdmpedro-financial-control-webswing1.0.0\webswing-examples-eval-24.2.5\server\apps\financial-control\anonym\upload]
+2025-08-10 16:40:41,102 INFO  [main] (WebswingServlet.java:85) Initializing Webswing 24.2.5 on (Azul Systems, Inc. 21.0.4 | Windows 10 10.0 amd64 )
+2025-08-10 16:40:41,112 INFO  [main] (DefaultInitializer.java:30) Using Temp folder: C:\Users\pepef\Desktop\Projetos\financial-control-webswing\financial-control-webswing\hdmpedro-financial-control-webswing1.0.0\webswing-examples-eval-24.2.5\tmp\server\release
+2025-08-10 16:40:41,112 INFO  [main] (DefaultInitializer.java:34) Using Root folder: C:\Users\pepef\Desktop\Projetos\financial-control-webswing\financial-control-webswing\hdmpedro-financial-control-webswing1.0.0\webswing-examples-eval-24.2.5\server
+2025-08-10 16:40:41,114 INFO  [main] (DefaultInitializer.java:44) Using War file: file:/C:/Users/pepef/Desktop/Projetos/financial-control-webswing/financial-control-webswing/hdmpedro-financial-control-webswing1.0.0/webswing-examples-eval-24.2.5/webswing-server.war
+2025-08-10 16:40:41,114 INFO  [main] (DefaultInitializer.java:48) Using Config file: file:/C:/Users/pepef/Desktop/Projetos/financial-control-webswing/financial-control-webswing/hdmpedro-financial-control-webswing1.0.0/webswing-examples-eval-24.2.5/server/webswing.config
+2025-08-10 16:40:41,115 INFO  [main] (DefaultInitializer.java:53) Using Properties file: file:/C:/Users/pepef/Desktop/Projetos/financial-control-webswing/financial-control-webswing/hdmpedro-financial-control-webswing1.0.0/webswing-examples-eval-24.2.5/server/webswing.properties
+2025-08-10 16:40:41,141 INFO  [main] (WebswingServlet.java:183) Starting webswing server with id [d6b37e1c-a44f-4861-be70-6a98ed83f7d7]...
+2025-08-10 16:40:41,148 WARN  [main] (JwtUtil.java:139) Connection secret is not long enough [23], should be at least 128 characters long. Secret key will be padded with '0'.
+2025-08-10 16:40:42,398 INFO  [main] (ServerUtil.java:631) Webswing version 25.1.4 is available. Please upgrade.
+2025-08-10 16:40:42,404 INFO  [main] (StartupServiceImpl.java:24) Starting service WebSocketServiceImpl
+2025-08-10 16:40:42,405 INFO  [main] (StartupServiceImpl.java:24) Starting service ConfigurationServiceImpl
+2025-08-10 16:40:42,811 INFO  [main] (GlobalUrlHandlerImpl.java:344) Loading configured Applications.
+2025-08-10 16:40:42,811 INFO  [main] (GlobalUrlHandlerImpl.java:361) Installing application /financial-control
+2025-08-10 16:40:42,838 INFO  [main] (GlobalUrlHandlerImpl.java:334) Master dataStore module INHERITED is not valid. Falling back to default module FILESYSTEM.
+2025-08-10 16:40:42,841 INFO  [main] (GlobalUrlHandlerImpl.java:302) Loading master security module.(NONE).
+2025-08-10 16:40:43,143 INFO  [main] (SessionPoolStartupServiceImpl.java:24) Starting session pool service SwingProcessServiceImpl
+2025-08-10 16:40:43,143 INFO  [main] (SessionPoolStartupServiceImpl.java:24) Starting session pool service IdleInstanceServiceImpl
+2025-08-10 16:40:43,145 INFO  [main] (SessionPoolStartupServiceImpl.java:24) Starting session pool service LocalSessionPoolConfigurationServiceImpl

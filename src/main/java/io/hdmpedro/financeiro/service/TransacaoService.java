@@ -27,11 +27,11 @@ public class TransacaoService {
                                        TransacaoTipo type, CategoriaTipo category, LocalDate date) {
         Transacao transacao = transactions.get(id);
         if (transacao != null) {
-            transacao.setDescription(description);
-            transacao.setAmount(amount);
-            transacao.setType(type);
-            transacao.setCategory(category);
-            transacao.setDate(date);
+            transacao.setDescricao(description);
+            transacao.setQuantia(amount);
+            transacao.setTransacaoTipo(type);
+            transacao.setCategoriaTipo(category);
+            transacao.setData(date);
         }
         return transacao;
     }
@@ -50,43 +50,43 @@ public class TransacaoService {
 
     public List<Transacao> getTransactionsByMonth(int month, int year) {
         return transactions.values().stream()
-                .filter(t -> t.getDate().getMonth().getValue() == month &&
-                        t.getDate().getYear() == year)
+                .filter(t -> t.getData().getMonth().getValue() == month &&
+                        t.getData().getYear() == year)
                 .collect(Collectors.toList());
     }
 
     public List<Transacao> getTransactionsByDateRange(LocalDate startDate, LocalDate endDate) {
         return transactions.values().stream()
-                .filter(t -> !t.getDate().isBefore(startDate) && !t.getDate().isAfter(endDate))
+                .filter(t -> !t.getData().isBefore(startDate) && !t.getData().isAfter(endDate))
                 .collect(Collectors.toList());
     }
 
     public List<Transacao> getTransactionsByCategory(CategoriaTipo category) {
         return transactions.values().stream()
-                .filter(t -> t.getCategory() == category)
+                .filter(t -> t.getCategoriaTipo() == category)
                 .collect(Collectors.toList());
     }
 
     public BigDecimal getTotalByType(TransacaoTipo type, int month, int year) {
         return getTransactionsByMonth(month, year).stream()
-                .filter(t -> t.getType() == type)
-                .map(Transacao::getAmount)
+                .filter(t -> t.getTransacaoTipo() == type)
+                .map(Transacao::getQuantia)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public BigDecimal getTotalByCategory(CategoriaTipo category, int month, int year) {
         return getTransactionsByMonth(month, year).stream()
-                .filter(t -> t.getCategory() == category)
-                .map(Transacao::getAmount)
+                .filter(t -> t.getCategoriaTipo() == category)
+                .map(Transacao::getQuantia)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     public Map<CategoriaTipo, BigDecimal> getExpensesByCategory(int month, int year) {
         return getTransactionsByMonth(month, year).stream()
-                .filter(t -> t.getType() == TransacaoTipo.SAIDA)
+                .filter(t -> t.getTransacaoTipo() == TransacaoTipo.SAIDA)
                 .collect(Collectors.groupingBy(
-                        Transacao::getCategory,
-                        Collectors.reducing(BigDecimal.ZERO, Transacao::getAmount, BigDecimal::add)
+                        Transacao::getCategoriaTipo,
+                        Collectors.reducing(BigDecimal.ZERO, Transacao::getQuantia, BigDecimal::add)
                 ));
     }
 
@@ -98,7 +98,7 @@ public class TransacaoService {
 
     public List<Transacao> getTransactionsByDate(LocalDate date) {
         return transactions.values().stream()
-                .filter(t -> t.getDate().equals(date))
+                .filter(t -> t.getData().equals(date))
                 .collect(Collectors.toList());
     }
 }

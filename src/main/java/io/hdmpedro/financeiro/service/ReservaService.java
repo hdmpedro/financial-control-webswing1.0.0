@@ -31,7 +31,7 @@ public class ReservaService {
 
     public BigDecimal getTotalReserve() {
         return reservas.stream()
-                .map(Reserva::getAmount)
+                .map(Reserva::getQuantia)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
@@ -41,8 +41,8 @@ public class ReservaService {
 
     public List<Reserva> getReservesByMonth(int month, int year) {
         return reservas.stream()
-                .filter(r -> r.getDate().getMonth().getValue() == month &&
-                        r.getDate().getYear() == year)
+                .filter(r -> r.getData().getMonth().getValue() == month &&
+                        r.getData().getYear() == year)
                 .collect(ArrayList::new, ArrayList::add, ArrayList::addAll);
     }
 
@@ -54,8 +54,8 @@ public class ReservaService {
 
     public BigDecimal getReservesByYear(int year) {
         return reservas.stream()
-                .filter(r -> r.getDate().getYear() == year)
-                .map(Reserva::getAmount)
+                .filter(r -> r.getData().getYear() == year)
+                .map(Reserva::getQuantia)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }

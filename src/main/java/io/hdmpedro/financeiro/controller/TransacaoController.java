@@ -60,10 +60,10 @@ public class TransacaoController {
             throw new IllegalArgumentException("Transação não encontrada");
         }
 
-        if (existingTransacao.getType() == TransacaoTipo.SAIDA) {
+        if (existingTransacao.getTransacaoTipo() == TransacaoTipo.SAIDA) {
             categoriaService.updateCategorySpent(
-                    existingTransacao.getCategory(),
-                    existingTransacao.getAmount().negate());
+                    existingTransacao.getCategoriaTipo(),
+                    existingTransacao.getQuantia().negate());
         }
 
         Transacao updatedTransacao = transacaoService.updateTransaction(
@@ -82,10 +82,10 @@ public class TransacaoController {
             throw new IllegalArgumentException("Transação não encontrada");
         }
 
-        if (transacao.getType() == TransacaoTipo.SAIDA) {
+        if (transacao.getTransacaoTipo() == TransacaoTipo.SAIDA) {
             categoriaService.updateCategorySpent(
-                    transacao.getCategory(),
-                    transacao.getAmount().negate());
+                    transacao.getCategoriaTipo(),
+                    transacao.getQuantia().negate());
         }
 
         if (!transacaoService.deleteTransaction(id)) {

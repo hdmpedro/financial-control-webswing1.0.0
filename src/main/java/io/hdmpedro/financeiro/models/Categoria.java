@@ -7,31 +7,31 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class Categoria {
-    private CategoriaTipo type;
-    private BigDecimal budgetLimit;
-    private BigDecimal currentSpent;
+    private CategoriaTipo tipo;
+    private BigDecimal orcamentoLimite;
+    private BigDecimal gastoAtual;
     private boolean isActive;
     private LocalDate lastUpdated;
 
     public Categoria() {
         this.isActive = true;
-        this.currentSpent = BigDecimal.ZERO;
+        this.gastoAtual = BigDecimal.ZERO;
         this.lastUpdated = LocalDate.now();
     }
 
-    public Categoria(CategoriaTipo type, BigDecimal budgetLimit) {
+    public Categoria(CategoriaTipo tipo, BigDecimal orcamentoLimite) {
         this();
-        this.type = type;
-        this.budgetLimit = budgetLimit;
+        this.tipo = tipo;
+        this.orcamentoLimite = orcamentoLimite;
     }
 
     public BigDecimal getRemainingBudget() {
-        return budgetLimit.subtract(currentSpent);
+        return orcamentoLimite.subtract(gastoAtual);
     }
 
     public double getBudgetUsagePercentage() {
-        if (budgetLimit.equals(BigDecimal.ZERO)) return 0;
-        return currentSpent.divide(budgetLimit, 4, java.math.RoundingMode.HALF_UP)
+        if (orcamentoLimite.equals(BigDecimal.ZERO)) return 0;
+        return gastoAtual.divide(orcamentoLimite, 4, java.math.RoundingMode.HALF_UP)
                 .multiply(BigDecimal.valueOf(100)).doubleValue();
     }
 
@@ -43,28 +43,28 @@ public class Categoria {
         this.lastUpdated = lastUpdated;
     }
 
-    public BigDecimal getCurrentSpent() {
-        return currentSpent;
+    public BigDecimal getGastoAtual() {
+        return gastoAtual;
     }
 
-    public void setCurrentSpent(BigDecimal currentSpent) {
-        this.currentSpent = currentSpent;
+    public void setGastoAtual(BigDecimal gastoAtual) {
+        this.gastoAtual = gastoAtual;
     }
 
-    public BigDecimal getBudgetLimit() {
-        return budgetLimit;
+    public BigDecimal getOrcamentoLimite() {
+        return orcamentoLimite;
     }
 
-    public void setBudgetLimit(BigDecimal budgetLimit) {
-        this.budgetLimit = budgetLimit;
+    public void setOrcamentoLimite(BigDecimal orcamentoLimite) {
+        this.orcamentoLimite = orcamentoLimite;
     }
 
-    public CategoriaTipo getType() {
-        return type;
+    public CategoriaTipo getTipo() {
+        return tipo;
     }
 
-    public void setType(CategoriaTipo type) {
-        this.type = type;
+    public void setTipo(CategoriaTipo tipo) {
+        this.tipo = tipo;
     }
 
     public boolean isActive() {
