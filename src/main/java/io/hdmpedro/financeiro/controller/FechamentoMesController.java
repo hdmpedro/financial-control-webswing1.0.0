@@ -3,7 +3,7 @@ package io.hdmpedro.financeiro.controller;
 
 import io.hdmpedro.financeiro.models.RelatorioMensal;
 import io.hdmpedro.financeiro.service.FechamentoMesService;
-import io.hdmpedro.financeiro.service.ReservaController;
+import io.hdmpedro.financeiro.service.ReservaService;
 import io.hdmpedro.financeiro.service.TransacaoService;
 
 import java.math.BigDecimal;
@@ -11,14 +11,14 @@ import java.util.List;
 
 public class FechamentoMesController {
     private final FechamentoMesService fechamentoMesService;
-    private final ReservaController reservaController;
+    private final ReservaService reservaService;
     private final TransacaoService transacaoService;
 
     public FechamentoMesController(FechamentoMesService fechamentoMesService,
-                                   ReservaController reservaController,
+                                   ReservaService reservaService,
                                    TransacaoService transacaoService) {
         this.fechamentoMesService = fechamentoMesService;
-        this.reservaController = reservaController;
+        this.reservaService = reservaService;
         this.transacaoService = transacaoService;
     }
 

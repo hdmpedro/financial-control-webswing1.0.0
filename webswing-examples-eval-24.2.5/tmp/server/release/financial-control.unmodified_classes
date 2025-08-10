@@ -40,7 +40,7 @@ io.hdmpedro.financeiro.service.TransacaoService
 io.hdmpedro.financeiro.service.CategoriaService
 io.hdmpedro.financeiro.models.enums.CategoriaTipo
 io.hdmpedro.financeiro.models.Categoria
-io.hdmpedro.financeiro.service.ReservaController
+io.hdmpedro.financeiro.service.ReservaService
 io.hdmpedro.financeiro.service.FechamentoMesService
 io.hdmpedro.financeiro.service.CalendarioService
 io.hdmpedro.financeiro.controller.TransacaoController

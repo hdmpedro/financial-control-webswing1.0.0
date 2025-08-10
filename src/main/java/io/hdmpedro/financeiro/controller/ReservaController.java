@@ -2,16 +2,17 @@ package io.hdmpedro.financeiro.controller;
 
 
 import io.hdmpedro.financeiro.models.Reserva;
+import io.hdmpedro.financeiro.service.ReservaService;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
 public class ReservaController {
-    private final io.hdmpedro.financeiro.service.ReservaController reservaController;
+    private final ReservaService reservaService;
 
-    public ReservaController(io.hdmpedro.financeiro.service.ReservaController reservaController) {
-        this.reservaController = reservaController;
+    public ReservaController(ReservaService reservaService) {
+        this.reservaService = reservaService;
     }
 
     public Reserva addToReserve(BigDecimal amount, String description) {
@@ -23,24 +24,24 @@ public class ReservaController {
             throw new IllegalArgumentException("Descrição é obrigatória");
         }
 
-        return reservaController.addToReserve(amount, description.trim(), LocalDate.now());
+        return reservaService.addToReserve(amount, description.trim(), LocalDate.now());
     }
 
     public void removeFromReserve(Long id) {
-        if (!reservaController.removeFromReserve(id)) {
+        if (!reservaService.removeFromReserve(id)) {
             throw new IllegalArgumentException("Reserva não encontrada");
         }
     }
 
     public BigDecimal getTotalReserve() {
-        return reservaController.getTotalReserve();
+        return reservaService.getTotalReserve();
     }
 
     public List<Reserva> getAllReserves() {
-        return reservaController.getAllReserves();
+        return reservaService.getAllReserves();
     }
 
     public List<Reserva> getReservesByMonth(int month, int year) {
-        return reservaController.getReservesByMonth(month, year);
+        return reservaService.getReservesByMonth(month, year);
     }
 }

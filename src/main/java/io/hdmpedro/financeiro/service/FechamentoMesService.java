@@ -12,12 +12,12 @@ import java.util.*;
 public class FechamentoMesService {
     private final Map<String, RelatorioMensal> closedMonths = new HashMap<>();
     private final TransacaoService transacaoService;
-    private final ReservaController reservaController;
+    private final ReservaService reservaService;
 
     public FechamentoMesService(TransacaoService transacaoService,
-                                ReservaController reservaController) {
+                                ReservaService reservaService) {
         this.transacaoService = transacaoService;
-        this.reservaController = reservaController;
+        this.reservaService = reservaService;
     }
 
     public RelatorioMensal closeMonth(int month, int year, BigDecimal reserveContribution) {
@@ -34,7 +34,7 @@ public class FechamentoMesService {
                 throw new IllegalArgumentException("Valor para reserva não pode ser maior que o saldo");
             }
             report.setReserveContribution(reserveContribution);
-            reservaController.addMonthlyBalanceToReserve(reserveContribution, month, year);
+            reservaService.addMonthlyBalanceToReserve(reserveContribution, month, year);
         }
 
         report.setClosed(true);

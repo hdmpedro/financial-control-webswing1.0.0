@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class ReservaController {
+public class ReservaService {
     private final List<Reserva> reservas = new ArrayList<>();
     private final AtomicLong idGenerator = new AtomicLong(1);
 

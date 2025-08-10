@@ -7,7 +7,7 @@ import javax.swing.SwingUtilities;
 public class MainController {
     private final TransacaoService transacaoService;
     private final CategoriaService categoriaService;
-    private final io.hdmpedro.financeiro.service.ReservaController reservaController;
+    private final ReservaService reservaService;
     private final FechamentoMesService fechamentoMesService;
     private final CalendarioService calendarioService;
 
@@ -21,15 +21,15 @@ public class MainController {
     public MainController() {
         this.transacaoService = new TransacaoService();
         this.categoriaService = new CategoriaService();
-        this.reservaController = new io.hdmpedro.financeiro.service.ReservaController();
-        this.fechamentoMesService = new FechamentoMesService(transacaoService, reservaController);
+        this.reservaService = new ReservaService();
+        this.fechamentoMesService = new FechamentoMesService(transacaoService, reservaService);
         this.calendarioService = new CalendarioService(transacaoService);
 
         this.transacaoController = new TransacaoController(transacaoService, categoriaService);
         this.categoriaController = new CategoriaController(categoriaService);
-        this.reservaController = new ReservaController(reservaController);
+        this.reservaService = new ReservaController(reservaService);
         this.fechamentoMesController = new FechamentoMesController(
-                fechamentoMesService, reservaController, transacaoService);
+                fechamentoMesService, reservaService, transacaoService);
     }
 
     public void initializeApplication() {
@@ -55,7 +55,7 @@ public class MainController {
     }
 
     public ReservaController getReserveController() {
-        return reservaController;
+        return reservaService;
     }
 
     public FechamentoMesController getMonthlyClosureController() {
@@ -70,8 +70,8 @@ public class MainController {
         return categoriaService;
     }
 
-    public io.hdmpedro.financeiro.service.ReservaController getReserveService() {
-        return reservaController;
+    public ReservaService getReserveService() {
+        return reservaService;
     }
 
     public CalendarioService getCalendarService() {
