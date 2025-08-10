@@ -2,28 +2,24 @@ package io.hdmpedro.financeiro.view.panels;
 
 
 import io.hdmpedro.financeiro.controller.MainController;
-import io.hdmpedro.financeiro.models.Category;
-import io.hdmpedro.financeiro.models.enums.CategoryType;
-import io.hdmpedro.financeiro.util.ColorTheme;
+import io.hdmpedro.financeiro.models.Categoria;
+import io.hdmpedro.financeiro.models.enums.CategoriaTipo;
+import io.hdmpedro.financeiro.util.MoedaUtil;
+import io.hdmpedro.financeiro.util.TemaCores;
 import io.hdmpedro.financeiro.view.MainFrame;
-import io.hdmpedro.financeiro.controller.MainController;
-import io.hdmpedro.financeiro.models.DailyBalance;
-import io.hdmpedro.financeiro.util.ColorTheme;
-import io.hdmpedro.financeiro.util.CurrencyUtil;
-import io.hdmpedro.financeiro.view.MainFrame;
-import io.hdmpedro.financeiro.view.components.ModernButton;
-import io.hdmpedro.financeiro.view.components.ModernTextField;
+import io.hdmpedro.financeiro.view.components.BotaoModerno;
+import io.hdmpedro.financeiro.view.components.CampoTextoModerno;
 
 import javax.swing.*;
 import java.awt.*;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class CategoryPanel extends JPanel implements MainFrame.RefreshablePanel {
+public class CategoriaPanel extends JPanel implements MainFrame.RefreshablePanel {
     private final MainController mainController;
     private JPanel categoriesPanel;
 
-    public CategoryPanel(MainController mainController) {
+    public CategoriaPanel(MainController mainController) {
         this.mainController = mainController;
         initializePanel();
         createComponents();
@@ -33,14 +29,14 @@ public class CategoryPanel extends JPanel implements MainFrame.RefreshablePanel 
 
     private void initializePanel() {
         setLayout(new BorderLayout());
-        setBackground(ColorTheme.BACKGROUND);
+        setBackground(TemaCores.BACKGROUND);
         setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
     }
 
     private void createComponents() {
         categoriesPanel = new JPanel();
         categoriesPanel.setLayout(new BoxLayout(categoriesPanel, BoxLayout.Y_AXIS));
-        categoriesPanel.setBackground(ColorTheme.BACKGROUND);
+        categoriesPanel.setBackground(TemaCores.BACKGROUND);
     }
 
     private void layoutComponents() {
@@ -54,10 +50,10 @@ public class CategoryPanel extends JPanel implements MainFrame.RefreshablePanel 
     private void updateCategories() {
         categoriesPanel.removeAll();
 
-        List<Category> categories = mainController.getCategoryController().getAllCategories();
+        List<Categoria> categories = mainController.getCategoryController().getAllCategories();
 
-        for (Category category : categories) {
-            categoriesPanel.add(createCategoryCard(category));
+        for (Categoria categoria : categories) {
+            categoriesPanel.add(createCategoryCard(categoria));
             categoriesPanel.add(Box.createRigidArea(new Dimension(0, 15)));
         }
 
@@ -65,23 +61,23 @@ public class CategoryPanel extends JPanel implements MainFrame.RefreshablePanel 
         categoriesPanel.repaint();
     }
 
-    private JPanel createCategoryCard(Category category) {
+    private JPanel createCategoryCard(Categoria categoria) {
         JPanel card = new JPanel(new BorderLayout());
         card.setBackground(Color.WHITE);
         card.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(ColorTheme.BORDER, 1),
+                BorderFactory.createLineBorder(TemaCores.BORDER, 1),
                 BorderFactory.createEmptyBorder(20, 20, 20, 20)
         ));
 
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setBackground(Color.WHITE);
 
-        JLabel nameLabel = new JLabel(category.getType().getDisplayName());
+        JLabel nameLabel = new JLabel(categoria.getType().getDisplayName());
         nameLabel.setFont(new Font("Segoe UI", Font.BOLD, 16));
-        nameLabel.setForeground(ColorTheme.TEXT_PRIMARY);
+        nameLabel.setForeground(TemaCores.TEXT_PRIMARY);
 
         JPanel colorIndicator = new JPanel();
-        colorIndicator.setBackground(Color.decode(category.getType().getColor()));
+        colorIndicator.setBackground(Color.decode(categoria.getType().getColor()));
         colorIndicator.setPreferredSize(new Dimension(4, 20));
 
         headerPanel.add(colorIndicator, BorderLayout.WEST);
@@ -97,8 +93,8 @@ public class CategoryPanel extends JPanel implements MainFrame.RefreshablePanel 
         gbc.gridx = 0; gbc.gridy = 0;
         contentPanel.add(new JLabel("Orçamento:"), gbc);
 
-        ModernTextField budgetField = new ModernTextField(
-                CurrencyUtil.format(category.getBudgetLimit()));
+        CampoTextoModerno budgetField = new CampoTextoModerno(
+                MoedaUtil.format(categoria.getBudgetLimit()));
         budgetField.setPreferredSize(new Dimension(150, 35));
         gbc.gridx = 1;
         contentPanel.add(budgetField, gbc);
@@ -106,35 +102,35 @@ public class CategoryPanel extends JPanel implements MainFrame.RefreshablePanel 
         gbc.gridx = 0; gbc.gridy = 1;
         contentPanel.add(new JLabel("Gasto:"), gbc);
 
-        JLabel spentLabel = new JLabel(CurrencyUtil.format(category.getCurrentSpent()));
-        spentLabel.setForeground(ColorTheme.ERROR);
+        JLabel spentLabel = new JLabel(MoedaUtil.format(categoria.getCurrentSpent()));
+        spentLabel.setForeground(TemaCores.ERROR);
         gbc.gridx = 1;
         contentPanel.add(spentLabel, gbc);
 
         gbc.gridx = 0; gbc.gridy = 2;
         contentPanel.add(new JLabel("Restante:"), gbc);
 
-        JLabel remainingLabel = new JLabel(CurrencyUtil.format(category.getRemainingBudget()));
-        remainingLabel.setForeground(ColorTheme.getBalanceColor(
-                category.getRemainingBudget().compareTo(BigDecimal.ZERO) >= 0));
+        JLabel remainingLabel = new JLabel(MoedaUtil.format(categoria.getRemainingBudget()));
+        remainingLabel.setForeground(TemaCores.getBalanceColor(
+                categoria.getRemainingBudget().compareTo(BigDecimal.ZERO) >= 0));
         gbc.gridx = 1;
         contentPanel.add(remainingLabel, gbc);
 
         JProgressBar progressBar = new JProgressBar(0, 100);
-        progressBar.setValue((int) category.getBudgetUsagePercentage());
+        progressBar.setValue((int) categoria.getBudgetUsagePercentage());
         progressBar.setStringPainted(true);
-        progressBar.setString(String.format("%.1f%%", category.getBudgetUsagePercentage()));
+        progressBar.setString(String.format("%.1f%%", categoria.getBudgetUsagePercentage()));
 
-        Color progressColor = category.getBudgetUsagePercentage() > 100 ? ColorTheme.ERROR :
-                category.getBudgetUsagePercentage() > 80 ? ColorTheme.WARNING :
-                        ColorTheme.SUCCESS;
+        Color progressColor = categoria.getBudgetUsagePercentage() > 100 ? TemaCores.ERROR :
+                categoria.getBudgetUsagePercentage() > 80 ? TemaCores.WARNING :
+                        TemaCores.SUCCESS;
         progressBar.setForeground(progressColor);
 
         gbc.gridx = 0; gbc.gridy = 3; gbc.gridwidth = 2; gbc.fill = GridBagConstraints.HORIZONTAL;
         contentPanel.add(progressBar, gbc);
 
-        ModernButton updateButton = new ModernButton("Atualizar Orçamento", ColorTheme.PRIMARY);
-        updateButton.addActionListener(e -> updateCategoryBudget(category.getType(), budgetField));
+        BotaoModerno updateButton = new BotaoModerno("Atualizar Orçamento", TemaCores.PRIMARY);
+        updateButton.addActionListener(e -> updateCategoryBudget(categoria.getType(), budgetField));
 
         gbc.gridy = 4; gbc.fill = GridBagConstraints.NONE; gbc.anchor = GridBagConstraints.EAST;
         contentPanel.add(updateButton, gbc);
@@ -145,10 +141,10 @@ public class CategoryPanel extends JPanel implements MainFrame.RefreshablePanel 
         return card;
     }
 
-    private void updateCategoryBudget(CategoryType categoryType, ModernTextField budgetField) {
+    private void updateCategoryBudget(CategoriaTipo categoriaTipo, CampoTextoModerno budgetField) {
         try {
-            BigDecimal budget = CurrencyUtil.parse(budgetField.getText());
-            mainController.getCategoryController().updateCategoryBudget(categoryType, budget);
+            BigDecimal budget = MoedaUtil.parse(budgetField.getText());
+            mainController.getCategoryController().updateCategoryBudget(categoriaTipo, budget);
             refresh();
             JOptionPane.showMessageDialog(this, "Orçamento atualizado com sucesso!");
         } catch (Exception e) {

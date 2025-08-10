@@ -1,22 +1,23 @@
 package io.hdmpedro.financeiro.view.components;
 
 
-import io.hdmpedro.financeiro.util.ColorTheme;
+import io.hdmpedro.financeiro.util.TemaCores;
+
 import javax.swing.*;
 import javax.swing.border.AbstractBorder;
 import java.awt.*;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
-public class ModernTextField extends JTextField {
+public class CampoTextoModerno extends JTextField {
     private String placeholder;
     private boolean showingPlaceholder;
 
-    public ModernTextField() {
+    public CampoTextoModerno() {
         initializeField();
     }
 
-    public ModernTextField(String placeholder) {
+    public CampoTextoModerno(String placeholder) {
         this.placeholder = placeholder;
         initializeField();
         showPlaceholder();
@@ -25,8 +26,8 @@ public class ModernTextField extends JTextField {
     private void initializeField() {
         setFont(new Font("Segoe UI", Font.PLAIN, 14));
         setBorder(new ModernBorder());
-        setBackground(ColorTheme.SURFACE);
-        setForeground(ColorTheme.TEXT_PRIMARY);
+        setBackground(TemaCores.SURFACE);
+        setForeground(TemaCores.TEXT_PRIMARY);
 
         addFocusListener(new FocusListener() {
             @Override
@@ -50,14 +51,14 @@ public class ModernTextField extends JTextField {
     private void showPlaceholder() {
         if (placeholder != null) {
             setText(placeholder);
-            setForeground(ColorTheme.TEXT_DISABLED);
+            setForeground(TemaCores.TEXT_DISABLED);
             showingPlaceholder = true;
         }
     }
 
     private void hidePlaceholder() {
         setText("");
-        setForeground(ColorTheme.TEXT_PRIMARY);
+        setForeground(TemaCores.TEXT_PRIMARY);
         showingPlaceholder = false;
     }
 
@@ -89,7 +90,7 @@ public class ModernTextField extends JTextField {
             Graphics2D g2d = (Graphics2D) g.create();
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-            g2d.setColor(isFocused ? ColorTheme.BORDER_FOCUS : ColorTheme.BORDER);
+            g2d.setColor(isFocused ? TemaCores.BORDER_FOCUS : TemaCores.BORDER);
             g2d.setStroke(new BasicStroke(isFocused ? 2 : 1));
             g2d.drawRoundRect(x, y, width - 1, height - 1, 6, 6);
 

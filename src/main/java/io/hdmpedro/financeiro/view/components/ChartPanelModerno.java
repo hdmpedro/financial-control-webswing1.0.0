@@ -1,7 +1,7 @@
 package io.hdmpedro.financeiro.view.components;
 
 
-import io.hdmpedro.financeiro.util.ColorTheme;
+import io.hdmpedro.financeiro.util.TemaCores;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -16,11 +16,11 @@ import java.awt.*;
 import java.math.BigDecimal;
 import java.util.Map;
 
-public class ModernChartPanel extends JPanel {
+public class ChartPanelModerno extends JPanel {
 
-    public ModernChartPanel() {
+    public ChartPanelModerno() {
         setLayout(new BorderLayout());
-        setBackground(ColorTheme.SURFACE);
+        setBackground(TemaCores.SURFACE);
     }
 
     public void createPieChart(String title, Map<String, BigDecimal> data) {
@@ -38,7 +38,7 @@ public class ModernChartPanel extends JPanel {
         customizePieChart(chart);
 
         ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setBackground(ColorTheme.SURFACE);
+        chartPanel.setBackground(TemaCores.SURFACE);
         chartPanel.setPreferredSize(new Dimension(400, 300));
 
         removeAll();
@@ -62,7 +62,7 @@ public class ModernChartPanel extends JPanel {
         customizeBarChart(chart);
 
         ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setBackground(ColorTheme.SURFACE);
+        chartPanel.setBackground(TemaCores.SURFACE);
         chartPanel.setPreferredSize(new Dimension(600, 400));
 
         removeAll();
@@ -72,22 +72,22 @@ public class ModernChartPanel extends JPanel {
     }
 
     private void customizePieChart(JFreeChart chart) {
-        chart.setBackgroundPaint(ColorTheme.SURFACE);
-        chart.getTitle().setPaint(ColorTheme.TEXT_PRIMARY);
+        chart.setBackgroundPaint(TemaCores.SURFACE);
+        chart.getTitle().setPaint(TemaCores.TEXT_PRIMARY);
         chart.getTitle().setFont(new Font("Segoe UI", Font.BOLD, 16));
 
         PiePlot plot = (PiePlot) chart.getPlot();
-        plot.setBackgroundPaint(ColorTheme.SURFACE);
+        plot.setBackgroundPaint(TemaCores.SURFACE);
         plot.setOutlineVisible(false);
         plot.setLabelFont(new Font("Segoe UI", Font.PLAIN, 12));
-        plot.setLabelPaint(ColorTheme.TEXT_PRIMARY);
+        plot.setLabelPaint(TemaCores.TEXT_PRIMARY);
 
         Color[] colors = {
-                ColorTheme.PRIMARY,
-                ColorTheme.ACCENT,
-                ColorTheme.SUCCESS,
-                ColorTheme.ERROR,
-                ColorTheme.WARNING,
+                TemaCores.PRIMARY,
+                TemaCores.ACCENT,
+                TemaCores.SUCCESS,
+                TemaCores.ERROR,
+                TemaCores.WARNING,
                 new Color(156, 39, 176),
                 new Color(0, 188, 212),
                 new Color(121, 85, 72)
@@ -101,17 +101,17 @@ public class ModernChartPanel extends JPanel {
     }
 
     private void customizeBarChart(JFreeChart chart) {
-        chart.setBackgroundPaint(ColorTheme.SURFACE);
-        chart.getTitle().setPaint(ColorTheme.TEXT_PRIMARY);
+        chart.setBackgroundPaint(TemaCores.SURFACE);
+        chart.getTitle().setPaint(TemaCores.TEXT_PRIMARY);
         chart.getTitle().setFont(new Font("Segoe UI", Font.BOLD, 16));
 
         CategoryPlot plot = chart.getCategoryPlot();
-        plot.setBackgroundPaint(ColorTheme.SURFACE);
-        plot.setRangeGridlinePaint(ColorTheme.BORDER);
+        plot.setBackgroundPaint(TemaCores.SURFACE);
+        plot.setRangeGridlinePaint(TemaCores.BORDER);
         plot.setOutlineVisible(false);
 
         BarRenderer renderer = (BarRenderer) plot.getRenderer();
-        renderer.setSeriesPaint(0, ColorTheme.PRIMARY);
+        renderer.setSeriesPaint(0, TemaCores.PRIMARY);
         renderer.setBarPainter(new org.jfree.chart.renderer.category.StandardBarPainter());
     }
 }

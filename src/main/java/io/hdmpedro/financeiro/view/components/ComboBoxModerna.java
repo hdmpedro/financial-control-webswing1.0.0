@@ -1,26 +1,27 @@
 package io.hdmpedro.financeiro.view.components;
 
-import io.hdmpedro.financeiro.util.ColorTheme;
+import io.hdmpedro.financeiro.util.TemaCores;
+
 import javax.swing.*;
 import java.awt.*;
 
-public class ModernComboBox<T> extends JComboBox<T> {
+public class ComboBoxModerna<T> extends JComboBox<T> {
 
-    public ModernComboBox() {
+    public ComboBoxModerna() {
         initializeComboBox();
     }
 
-    public ModernComboBox(T[] items) {
+    public ComboBoxModerna(T[] items) {
         super(items);
         initializeComboBox();
     }
 
     private void initializeComboBox() {
         setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        setBackground(ColorTheme.SURFACE);
-        setForeground(ColorTheme.TEXT_PRIMARY);
+        setBackground(TemaCores.SURFACE);
+        setForeground(TemaCores.TEXT_PRIMARY);
         setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(ColorTheme.BORDER, 1),
+                BorderFactory.createLineBorder(TemaCores.BORDER, 1),
                 BorderFactory.createEmptyBorder(4, 8, 4, 8)
         ));
 
@@ -38,11 +39,11 @@ public class ModernComboBox<T> extends JComboBox<T> {
             setBorder(BorderFactory.createEmptyBorder(8, 12, 8, 12));
 
             if (isSelected) {
-                setBackground(ColorTheme.PRIMARY_LIGHT);
-                setForeground(ColorTheme.TEXT_PRIMARY);
+                setBackground(TemaCores.PRIMARY_LIGHT);
+                setForeground(TemaCores.TEXT_PRIMARY);
             } else {
-                setBackground(ColorTheme.SURFACE);
-                setForeground(ColorTheme.TEXT_PRIMARY);
+                setBackground(TemaCores.SURFACE);
+                setForeground(TemaCores.TEXT_PRIMARY);
             }
 
             return this;

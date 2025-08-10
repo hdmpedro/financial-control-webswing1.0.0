@@ -1,14 +1,14 @@
 package io.hdmpedro.financeiro.models;
 
 
-import io.hdmpedro.financeiro.models.enums.CategoryType;
+import io.hdmpedro.financeiro.models.enums.CategoriaTipo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-public class MonthlyReport {
+public class RelatorioMensal {
     private int month;
     private int year;
     private LocalDate closureDate;
@@ -16,15 +16,15 @@ public class MonthlyReport {
     private BigDecimal totalExpenses;
     private BigDecimal balance;
     private BigDecimal reserveContribution;
-    private Map<CategoryType, BigDecimal> expensesByCategory;
-    private List<WeeklyBalance> weeklyBalances;
+    private Map<CategoriaTipo, BigDecimal> expensesByCategory;
+    private List<BalancoSemanal> balancoSemanals;
     private boolean isClosed;
 
-    public MonthlyReport() {
+    public RelatorioMensal() {
         this.isClosed = false;
     }
 
-    public MonthlyReport(int month, int year) {
+    public RelatorioMensal(int month, int year) {
         this();
         this.month = month;
         this.year = year;
@@ -50,19 +50,19 @@ public class MonthlyReport {
         isClosed = closed;
     }
 
-    public List<WeeklyBalance> getWeeklyBalances() {
-        return weeklyBalances;
+    public List<BalancoSemanal> getWeeklyBalances() {
+        return balancoSemanals;
     }
 
-    public void setWeeklyBalances(List<WeeklyBalance> weeklyBalances) {
-        this.weeklyBalances = weeklyBalances;
+    public void setWeeklyBalances(List<BalancoSemanal> balancoSemanals) {
+        this.balancoSemanals = balancoSemanals;
     }
 
-    public Map<CategoryType, BigDecimal> getExpensesByCategory() {
+    public Map<CategoriaTipo, BigDecimal> getExpensesByCategory() {
         return expensesByCategory;
     }
 
-    public void setExpensesByCategory(Map<CategoryType, BigDecimal> expensesByCategory) {
+    public void setExpensesByCategory(Map<CategoriaTipo, BigDecimal> expensesByCategory) {
         this.expensesByCategory = expensesByCategory;
     }
 

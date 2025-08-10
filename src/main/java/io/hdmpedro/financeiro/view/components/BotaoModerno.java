@@ -1,25 +1,26 @@
 package io.hdmpedro.financeiro.view.components;
 
 
-import io.hdmpedro.financeiro.util.ColorTheme;
+import io.hdmpedro.financeiro.util.TemaCores;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class ModernButton extends JButton {
+public class BotaoModerno extends JButton {
     private Color backgroundColor;
     private Color hoverColor;
     private Color pressedColor;
     private boolean isHovered = false;
     private boolean isPressed = false;
 
-    public ModernButton(String text) {
+    public BotaoModerno(String text) {
         super(text);
         initializeButton();
     }
 
-    public ModernButton(String text, Color backgroundColor) {
+    public BotaoModerno(String text, Color backgroundColor) {
         super(text);
         this.backgroundColor = backgroundColor;
         this.hoverColor = backgroundColor.darker();
@@ -29,9 +30,9 @@ public class ModernButton extends JButton {
 
     private void initializeButton() {
         if (backgroundColor == null) {
-            backgroundColor = ColorTheme.PRIMARY;
-            hoverColor = ColorTheme.PRIMARY_DARK;
-            pressedColor = ColorTheme.PRIMARY_LIGHT;
+            backgroundColor = TemaCores.PRIMARY;
+            hoverColor = TemaCores.PRIMARY_DARK;
+            pressedColor = TemaCores.PRIMARY_LIGHT;
         }
 
         setFont(new Font("Segoe UI", Font.PLAIN, 14));

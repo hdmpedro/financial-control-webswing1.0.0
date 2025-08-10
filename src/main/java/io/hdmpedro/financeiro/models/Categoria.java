@@ -1,25 +1,25 @@
 package io.hdmpedro.financeiro.models;
 
 
-import io.hdmpedro.financeiro.models.enums.CategoryType;
+import io.hdmpedro.financeiro.models.enums.CategoriaTipo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Category {
-    private CategoryType type;
+public class Categoria {
+    private CategoriaTipo type;
     private BigDecimal budgetLimit;
     private BigDecimal currentSpent;
     private boolean isActive;
     private LocalDate lastUpdated;
 
-    public Category() {
+    public Categoria() {
         this.isActive = true;
         this.currentSpent = BigDecimal.ZERO;
         this.lastUpdated = LocalDate.now();
     }
 
-    public Category(CategoryType type, BigDecimal budgetLimit) {
+    public Categoria(CategoriaTipo type, BigDecimal budgetLimit) {
         this();
         this.type = type;
         this.budgetLimit = budgetLimit;
@@ -59,11 +59,11 @@ public class Category {
         this.budgetLimit = budgetLimit;
     }
 
-    public CategoryType getType() {
+    public CategoriaTipo getType() {
         return type;
     }
 
-    public void setType(CategoryType type) {
+    public void setType(CategoriaTipo type) {
         this.type = type;
     }
 

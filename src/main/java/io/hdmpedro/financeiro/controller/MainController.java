@@ -5,31 +5,31 @@ import io.hdmpedro.financeiro.view.MainFrame;
 import javax.swing.SwingUtilities;
 
 public class MainController {
-    private final TransactionService transactionService;
-    private final CategoryService categoryService;
-    private final ReserveService reserveService;
-    private final MonthlyClosureService monthlyClosureService;
-    private final CalendarService calendarService;
+    private final TransacaoService transacaoService;
+    private final CategoriaService categoriaService;
+    private final ReservaController reservaController;
+    private final FechamentoMesService fechamentoMesService;
+    private final CalendarioService calendarioService;
 
-    private final TransactionController transactionController;
-    private final CategoryController categoryController;
+    private final TransacaoController transacaoController;
+    private final CategoriaController categoriaController;
     private final ReserveController reserveController;
-    private final MonthlyClosureController monthlyClosureController;
+    private final FechamentoMesController fechamentoMesController;
 
     private MainFrame mainFrame;
 
     public MainController() {
-        this.transactionService = new TransactionService();
-        this.categoryService = new CategoryService();
-        this.reserveService = new ReserveService();
-        this.monthlyClosureService = new MonthlyClosureService(transactionService, reserveService);
-        this.calendarService = new CalendarService(transactionService);
+        this.transacaoService = new TransacaoService();
+        this.categoriaService = new CategoriaService();
+        this.reservaController = new ReservaController();
+        this.fechamentoMesService = new FechamentoMesService(transacaoService, reservaController);
+        this.calendarioService = new CalendarioService(transacaoService);
 
-        this.transactionController = new TransactionController(transactionService, categoryService);
-        this.categoryController = new CategoryController(categoryService);
-        this.reserveController = new ReserveController(reserveService);
-        this.monthlyClosureController = new MonthlyClosureController(
-                monthlyClosureService, reserveService, transactionService);
+        this.transacaoController = new TransacaoController(transacaoService, categoriaService);
+        this.categoriaController = new CategoriaController(categoriaService);
+        this.reserveController = new ReserveController(reservaController);
+        this.fechamentoMesController = new FechamentoMesController(
+                fechamentoMesService, reservaController, transacaoService);
     }
 
     public void initializeApplication() {
@@ -46,40 +46,40 @@ public class MainController {
         });
     }
 
-    public TransactionController getTransactionController() {
-        return transactionController;
+    public TransacaoController getTransactionController() {
+        return transacaoController;
     }
 
-    public CategoryController getCategoryController() {
-        return categoryController;
+    public CategoriaController getCategoryController() {
+        return categoriaController;
     }
 
     public ReserveController getReserveController() {
         return reserveController;
     }
 
-    public MonthlyClosureController getMonthlyClosureController() {
-        return monthlyClosureController;
+    public FechamentoMesController getMonthlyClosureController() {
+        return fechamentoMesController;
     }
 
-    public TransactionService getTransactionService() {
-        return transactionService;
+    public TransacaoService getTransactionService() {
+        return transacaoService;
     }
 
-    public CategoryService getCategoryService() {
-        return categoryService;
+    public CategoriaService getCategoryService() {
+        return categoriaService;
     }
 
-    public ReserveService getReserveService() {
-        return reserveService;
+    public ReservaController getReserveService() {
+        return reservaController;
     }
 
-    public CalendarService getCalendarService() {
-        return calendarService;
+    public CalendarioService getCalendarService() {
+        return calendarioService;
     }
 
-    public MonthlyClosureService getMonthlyClosureService() {
-        return monthlyClosureService;
+    public FechamentoMesService getMonthlyClosureService() {
+        return fechamentoMesService;
     }
 
     public void refreshAllViews() {

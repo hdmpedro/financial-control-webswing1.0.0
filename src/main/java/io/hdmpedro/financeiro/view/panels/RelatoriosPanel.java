@@ -9,29 +9,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import io.hdmpedro.financeiro.controller.MainController;
-import io.hdmpedro.financeiro.models.Category;
-import io.hdmpedro.financeiro.models.MonthlyReport;
-import io.hdmpedro.financeiro.models.Reserve;
-import io.hdmpedro.financeiro.models.enums.CategoryType;
-import io.hdmpedro.financeiro.util.ColorTheme;
-import io.hdmpedro.financeiro.util.DateUtils;
+import io.hdmpedro.financeiro.models.RelatorioMensal;
+import io.hdmpedro.financeiro.util.MoedaUtil;
+import io.hdmpedro.financeiro.util.TemaCores;
 import io.hdmpedro.financeiro.view.MainFrame;
-import io.hdmpedro.financeiro.controller.MainController;
-import io.hdmpedro.financeiro.models.DailyBalance;
-import io.hdmpedro.financeiro.util.ColorTheme;
-import io.hdmpedro.financeiro.util.CurrencyUtil;
-import io.hdmpedro.financeiro.view.MainFrame;
-import io.hdmpedro.financeiro.view.components.ModernButton;
-import io.hdmpedro.financeiro.view.components.ModernChartPanel;
-import io.hdmpedro.financeiro.view.components.ModernTextField;
+import io.hdmpedro.financeiro.view.components.BotaoModerno;
+import io.hdmpedro.financeiro.view.components.ChartPanelModerno;
 
-public class ReportsPanel extends JPanel implements MainFrame.RefreshablePanel {
+public class RelatoriosPanel extends JPanel implements MainFrame.RefreshablePanel {
     private final MainController mainController;
     private JComboBox<Integer> yearCombo;
-    private ModernChartPanel chartPanel;
+    private ChartPanelModerno chartPanel;
     private JPanel summaryPanel;
 
-    public ReportsPanel(MainController mainController) {
+    public RelatoriosPanel(MainController mainController) {
         this.mainController = mainController;
         initializePanel();
         createComponents();
@@ -42,7 +33,7 @@ public class ReportsPanel extends JPanel implements MainFrame.RefreshablePanel {
 
     private void initializePanel() {
         setLayout(new BorderLayout());
-        setBackground(ColorTheme.BACKGROUND);
+        setBackground(TemaCores.BACKGROUND);
         setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
     }
 
@@ -63,24 +54,24 @@ public class ReportsPanel extends JPanel implements MainFrame.RefreshablePanel {
     }
 
     private void createChartPanel() {
-        chartPanel = new ModernChartPanel();
+        chartPanel = new ChartPanelModerno();
         chartPanel.setPreferredSize(new Dimension(600, 400));
     }
 
     private void createSummaryPanel() {
         summaryPanel = new JPanel();
         summaryPanel.setLayout(new BoxLayout(summaryPanel, BoxLayout.Y_AXIS));
-        summaryPanel.setBackground(ColorTheme.BACKGROUND);
+        summaryPanel.setBackground(TemaCores.BACKGROUND);
         summaryPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 0, 0));
     }
 
     private void layoutComponents() {
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        topPanel.setBackground(ColorTheme.BACKGROUND);
+        topPanel.setBackground(TemaCores.BACKGROUND);
         topPanel.add(new JLabel("Ano:"));
         topPanel.add(yearCombo);
 
-        ModernButton generateReportBtn = new ModernButton("Gerar Relatório", ColorTheme.PRIMARY);
+        BotaoModerno generateReportBtn = new BotaoModerno("Gerar Relatório", TemaCores.PRIMARY);
         generateReportBtn.addActionListener(e -> refresh());
         topPanel.add(Box.createHorizontalStrut(20));
         topPanel.add(generateReportBtn);
@@ -100,7 +91,7 @@ public class ReportsPanel extends JPanel implements MainFrame.RefreshablePanel {
     }
 
     private void updateCharts(int year) {
-        List<MonthlyReport> reports = mainController.getMonthlyClosureController()
+        List<RelatorioMensal> reports = mainController.getMonthlyClosureController()
                 .getClosedMonthsByYear(year);
 
         if (reports.isEmpty()) {
@@ -108,7 +99,7 @@ public class ReportsPanel extends JPanel implements MainFrame.RefreshablePanel {
             JLabel noDataLabel = new JLabel("Nenhum relatório disponível para " + year,
                     SwingConstants.CENTER);
             noDataLabel.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-            noDataLabel.setForeground(ColorTheme.TEXT_SECONDARY);
+            noDataLabel.setForeground(TemaCores.TEXT_SECONDARY);
             chartPanel.add(noDataLabel, BorderLayout.CENTER);
             return;
         }
@@ -117,7 +108,7 @@ public class ReportsPanel extends JPanel implements MainFrame.RefreshablePanel {
         String[] monthNames = {"Jan", "Fev", "Mar", "Abr", "Mai", "Jun",
                 "Jul", "Ago", "Set", "Out", "Nov", "Dez"};
 
-        for (MonthlyReport report : reports) {
+        for (RelatorioMensal report : reports) {
             String monthName = monthNames[report.getMonth() - 1];
             monthlyData.put(monthName, report.getFinalBalance());
         }
@@ -129,7 +120,7 @@ public class ReportsPanel extends JPanel implements MainFrame.RefreshablePanel {
     private void updateSummary(int year) {
         summaryPanel.removeAll();
 
-        List<MonthlyReport> reports = mainController.getMonthlyClosureController()
+        List<RelatorioMensal> reports = mainController.getMonthlyClosureController()
                 .getClosedMonthsByYear(year);
 
         if (reports.isEmpty()) {
@@ -137,11 +128,11 @@ public class ReportsPanel extends JPanel implements MainFrame.RefreshablePanel {
         }
 
         BigDecimal totalIncome = reports.stream()
-                .map(MonthlyReport::getTotalIncome)
+                .map(RelatorioMensal::getTotalIncome)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         BigDecimal totalExpenses = reports.stream()
-                .map(MonthlyReport::getTotalExpenses)
+                .map(RelatorioMensal::getTotalExpenses)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
 
         BigDecimal totalBalance = totalIncome.subtract(totalExpenses);
@@ -153,34 +144,34 @@ public class ReportsPanel extends JPanel implements MainFrame.RefreshablePanel {
         JPanel summaryCard = new JPanel(new GridLayout(2, 4, 20, 10));
         summaryCard.setBackground(Color.WHITE);
         summaryCard.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(ColorTheme.BORDER, 1),
+                BorderFactory.createLineBorder(TemaCores.BORDER, 1),
                 BorderFactory.createEmptyBorder(20, 20, 20, 20)
         ));
 
-        summaryCard.add(createSummaryItem("Total de Entradas", CurrencyUtil.format(totalIncome),
-                ColorTheme.SUCCESS));
-        summaryCard.add(createSummaryItem("Total de Saídas", CurrencyUtil.format(totalExpenses),
-                ColorTheme.ERROR));
-        summaryCard.add(createSummaryItem("Saldo do Ano", CurrencyUtil.format(totalBalance),
-                ColorTheme.getBalanceColor(totalBalance.compareTo(BigDecimal.ZERO) >= 0)));
-        summaryCard.add(createSummaryItem("Reserva Acumulada", CurrencyUtil.format(totalReserveContributions),
-                ColorTheme.PRIMARY));
+        summaryCard.add(createSummaryItem("Total de Entradas", MoedaUtil.format(totalIncome),
+                TemaCores.SUCCESS));
+        summaryCard.add(createSummaryItem("Total de Saídas", MoedaUtil.format(totalExpenses),
+                TemaCores.ERROR));
+        summaryCard.add(createSummaryItem("Saldo do Ano", MoedaUtil.format(totalBalance),
+                TemaCores.getBalanceColor(totalBalance.compareTo(BigDecimal.ZERO) >= 0)));
+        summaryCard.add(createSummaryItem("Reserva Acumulada", MoedaUtil.format(totalReserveContributions),
+                TemaCores.PRIMARY));
 
         summaryCard.add(createSummaryItem("Meses Fechados", String.valueOf(reports.size()),
-                ColorTheme.TEXT_PRIMARY));
+                TemaCores.TEXT_PRIMARY));
         summaryCard.add(createSummaryItem("Média Mensal",
-                CurrencyUtil.format(totalBalance.divide(BigDecimal.valueOf(Math.max(1, reports.size())), 2, java.math.RoundingMode.HALF_UP)),
-                ColorTheme.TEXT_PRIMARY));
+                MoedaUtil.format(totalBalance.divide(BigDecimal.valueOf(Math.max(1, reports.size())), 2, java.math.RoundingMode.HALF_UP)),
+                TemaCores.TEXT_PRIMARY));
         summaryCard.add(createSummaryItem("Maior Saldo",
-                CurrencyUtil.format(reports.stream().map(MonthlyReport::getFinalBalance).max(BigDecimal::compareTo).orElse(BigDecimal.ZERO)),
-                ColorTheme.SUCCESS));
+                MoedaUtil.format(reports.stream().map(RelatorioMensal::getFinalBalance).max(BigDecimal::compareTo).orElse(BigDecimal.ZERO)),
+                TemaCores.SUCCESS));
         summaryCard.add(createSummaryItem("Menor Saldo",
-                CurrencyUtil.format(reports.stream().map(MonthlyReport::getFinalBalance).min(BigDecimal::compareTo).orElse(BigDecimal.ZERO)),
-                ColorTheme.ERROR));
+                MoedaUtil.format(reports.stream().map(RelatorioMensal::getFinalBalance).min(BigDecimal::compareTo).orElse(BigDecimal.ZERO)),
+                TemaCores.ERROR));
 
         JLabel titleLabel = new JLabel("Resumo Anual - " + year);
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 18));
-        titleLabel.setForeground(ColorTheme.TEXT_PRIMARY);
+        titleLabel.setForeground(TemaCores.TEXT_PRIMARY);
         titleLabel.setBorder(BorderFactory.createEmptyBorder(0, 0, 15, 0));
 
         summaryPanel.add(titleLabel);
@@ -193,7 +184,7 @@ public class ReportsPanel extends JPanel implements MainFrame.RefreshablePanel {
 
         JLabel labelComponent = new JLabel(label);
         labelComponent.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        labelComponent.setForeground(ColorTheme.TEXT_SECONDARY);
+        labelComponent.setForeground(TemaCores.TEXT_SECONDARY);
 
         JLabel valueComponent = new JLabel(value);
         valueComponent.setFont(new Font("Segoe UI", Font.BOLD, 16));

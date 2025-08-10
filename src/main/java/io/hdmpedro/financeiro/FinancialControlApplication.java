@@ -2,7 +2,6 @@ package io.hdmpedro.financeiro;
 
 
 import io.hdmpedro.financeiro.controller.MainController;
-import io.hdmpedro.financeiro.util.ColorTheme;
 import org.webswing.toolkit.api.WebswingUtil;
 
 public class FinancialControlApplication {

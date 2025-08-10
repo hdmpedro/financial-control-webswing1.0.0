@@ -4,7 +4,7 @@ package io.hdmpedro.financeiro.models;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class WeeklyBalance {
+public class BalancoSemanal {
     private int weekNumber;
     private LocalDate startDate;
     private LocalDate endDate;
@@ -12,13 +12,13 @@ public class WeeklyBalance {
     private BigDecimal expenses;
     private BigDecimal balance;
 
-    public WeeklyBalance() {
+    public BalancoSemanal() {
         this.income = BigDecimal.ZERO;
         this.expenses = BigDecimal.ZERO;
         this.balance = BigDecimal.ZERO;
     }
 
-    public WeeklyBalance(int weekNumber, LocalDate startDate, LocalDate endDate) {
+    public BalancoSemanal(int weekNumber, LocalDate startDate, LocalDate endDate) {
         this();
         this.weekNumber = weekNumber;
         this.startDate = startDate;

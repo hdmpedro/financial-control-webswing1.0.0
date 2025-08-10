@@ -3,7 +3,7 @@ package io.hdmpedro.financeiro.util;
 
 import java.awt.Color;
 
-public class ColorTheme {
+public class TemaCores {
     public static final Color PRIMARY = new Color(103, 58, 183);
     public static final Color PRIMARY_DARK = new Color(81, 45, 144);
     public static final Color PRIMARY_LIGHT = new Color(179, 157, 219);

@@ -4,20 +4,20 @@ package io.hdmpedro.financeiro.models;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class DailyBalance {
+public class BalancoDiario {
     private LocalDate date;
     private BigDecimal income;
     private BigDecimal expenses;
     private BigDecimal balance;
     private BigDecimal runningBalance;
 
-    public DailyBalance() {
+    public BalancoDiario() {
         this.income = BigDecimal.ZERO;
         this.expenses = BigDecimal.ZERO;
         this.balance = BigDecimal.ZERO;
     }
 
-    public DailyBalance(LocalDate date) {
+    public BalancoDiario(LocalDate date) {
         this();
         this.date = date;
     }

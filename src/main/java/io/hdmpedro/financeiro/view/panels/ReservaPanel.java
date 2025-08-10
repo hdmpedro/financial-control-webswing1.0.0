@@ -8,29 +8,23 @@ import java.awt.*;
 import java.math.BigDecimal;
 import java.util.List;
 import io.hdmpedro.financeiro.controller.MainController;
-import io.hdmpedro.financeiro.models.Category;
-import io.hdmpedro.financeiro.models.Reserve;
-import io.hdmpedro.financeiro.models.enums.CategoryType;
-import io.hdmpedro.financeiro.util.ColorTheme;
-import io.hdmpedro.financeiro.util.DateUtils;
+import io.hdmpedro.financeiro.models.Reserva;
+import io.hdmpedro.financeiro.util.MoedaUtil;
+import io.hdmpedro.financeiro.util.TemaCores;
+import io.hdmpedro.financeiro.util.DataUtil;
 import io.hdmpedro.financeiro.view.MainFrame;
-import io.hdmpedro.financeiro.controller.MainController;
-import io.hdmpedro.financeiro.models.DailyBalance;
-import io.hdmpedro.financeiro.util.ColorTheme;
-import io.hdmpedro.financeiro.util.CurrencyUtil;
-import io.hdmpedro.financeiro.view.MainFrame;
-import io.hdmpedro.financeiro.view.components.ModernButton;
-import io.hdmpedro.financeiro.view.components.ModernTextField;
+import io.hdmpedro.financeiro.view.components.BotaoModerno;
+import io.hdmpedro.financeiro.view.components.CampoTextoModerno;
 
-public class ReservePanel extends JPanel implements MainFrame.RefreshablePanel {
+public class ReservaPanel extends JPanel implements MainFrame.RefreshablePanel {
     private final MainController mainController;
     private JLabel totalReserveLabel;
     private JTable reserveTable;
     private ReserveTableModel tableModel;
-    private ModernTextField amountField;
-    private ModernTextField descriptionField;
+    private CampoTextoModerno amountField;
+    private CampoTextoModerno descriptionField;
 
-    public ReservePanel(MainController mainController) {
+    public ReservaPanel(MainController mainController) {
         this.mainController = mainController;
         initializePanel();
         createComponents();
@@ -41,7 +35,7 @@ public class ReservePanel extends JPanel implements MainFrame.RefreshablePanel {
 
     private void initializePanel() {
         setLayout(new BorderLayout());
-        setBackground(ColorTheme.BACKGROUND);
+        setBackground(TemaCores.BACKGROUND);
         setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
     }
 
@@ -54,12 +48,12 @@ public class ReservePanel extends JPanel implements MainFrame.RefreshablePanel {
     private void createSummaryPanel() {
         totalReserveLabel = new JLabel("R$ 0,00");
         totalReserveLabel.setFont(new Font("Segoe UI", Font.BOLD, 32));
-        totalReserveLabel.setForeground(ColorTheme.SUCCESS);
+        totalReserveLabel.setForeground(TemaCores.SUCCESS);
     }
 
     private void createAddReserveForm() {
-        amountField = new ModernTextField("Valor");
-        descriptionField = new ModernTextField("Descrição");
+        amountField = new CampoTextoModerno("Valor");
+        descriptionField = new CampoTextoModerno("Descrição");
     }
 
     private void createReserveTable() {
@@ -68,8 +62,8 @@ public class ReservePanel extends JPanel implements MainFrame.RefreshablePanel {
         reserveTable.setRowHeight(40);
         reserveTable.setFont(new Font("Segoe UI", Font.PLAIN, 13));
         reserveTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 13));
-        reserveTable.getTableHeader().setBackground(ColorTheme.SURFACE_VARIANT);
-        reserveTable.setGridColor(ColorTheme.BORDER);
+        reserveTable.getTableHeader().setBackground(TemaCores.SURFACE_VARIANT);
+        reserveTable.setGridColor(TemaCores.BORDER);
 
         reserveTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
             @Override
@@ -78,14 +72,14 @@ public class ReservePanel extends JPanel implements MainFrame.RefreshablePanel {
                 super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
                 if (!isSelected) {
-                    setBackground(row % 2 == 0 ? Color.WHITE : ColorTheme.SURFACE_VARIANT);
+                    setBackground(row % 2 == 0 ? Color.WHITE : TemaCores.SURFACE_VARIANT);
                 }
 
                 if (column == 1) {
-                    setForeground(isSelected ? Color.WHITE : ColorTheme.SUCCESS);
+                    setForeground(isSelected ? Color.WHITE : TemaCores.SUCCESS);
                     setHorizontalAlignment(SwingConstants.RIGHT);
                 } else {
-                    setForeground(isSelected ? Color.WHITE : ColorTheme.TEXT_PRIMARY);
+                    setForeground(isSelected ? Color.WHITE : TemaCores.TEXT_PRIMARY);
                     setHorizontalAlignment(SwingConstants.LEFT);
                 }
 
@@ -97,18 +91,18 @@ public class ReservePanel extends JPanel implements MainFrame.RefreshablePanel {
 
     private void layoutComponents() {
         JPanel topPanel = new JPanel(new BorderLayout());
-        topPanel.setBackground(ColorTheme.BACKGROUND);
+        topPanel.setBackground(TemaCores.BACKGROUND);
 
         JPanel summaryCard = new JPanel(new BorderLayout());
         summaryCard.setBackground(Color.WHITE);
         summaryCard.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(ColorTheme.BORDER, 1),
+                BorderFactory.createLineBorder(TemaCores.BORDER, 1),
                 BorderFactory.createEmptyBorder(30, 30, 30, 30)
         ));
 
         JLabel titleLabel = new JLabel("Total da Reserva");
         titleLabel.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-        titleLabel.setForeground(ColorTheme.TEXT_SECONDARY);
+        titleLabel.setForeground(TemaCores.TEXT_SECONDARY);
 
         summaryCard.add(titleLabel, BorderLayout.NORTH);
         summaryCard.add(totalReserveLabel, BorderLayout.CENTER);
@@ -116,7 +110,7 @@ public class ReservePanel extends JPanel implements MainFrame.RefreshablePanel {
         JPanel formPanel = new JPanel(new GridBagLayout());
         formPanel.setBackground(Color.WHITE);
         formPanel.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(ColorTheme.BORDER, 1),
+                BorderFactory.createLineBorder(TemaCores.BORDER, 1),
                 BorderFactory.createEmptyBorder(20, 20, 20, 20)
         ));
 
@@ -134,7 +128,7 @@ public class ReservePanel extends JPanel implements MainFrame.RefreshablePanel {
         gbc.gridx = 1; gbc.fill = GridBagConstraints.HORIZONTAL;
         formPanel.add(descriptionField, gbc);
 
-        ModernButton addButton = new ModernButton("Adicionar à Reserva", ColorTheme.SUCCESS);
+        BotaoModerno addButton = new BotaoModerno("Adicionar à Reserva", TemaCores.SUCCESS);
         addButton.addActionListener(e -> addToReserve());
 
         gbc.gridx = 1; gbc.gridy = 2; gbc.anchor = GridBagConstraints.EAST;
@@ -142,11 +136,11 @@ public class ReservePanel extends JPanel implements MainFrame.RefreshablePanel {
         formPanel.add(addButton, gbc);
 
         JPanel topLeftPanel = new JPanel(new BorderLayout());
-        topLeftPanel.setBackground(ColorTheme.BACKGROUND);
+        topLeftPanel.setBackground(TemaCores.BACKGROUND);
         topLeftPanel.add(summaryCard, BorderLayout.CENTER);
 
         JPanel topRightPanel = new JPanel(new BorderLayout());
-        topRightPanel.setBackground(ColorTheme.BACKGROUND);
+        topRightPanel.setBackground(TemaCores.BACKGROUND);
         topRightPanel.add(formPanel, BorderLayout.CENTER);
 
         topPanel.add(topLeftPanel, BorderLayout.WEST);
@@ -154,7 +148,7 @@ public class ReservePanel extends JPanel implements MainFrame.RefreshablePanel {
         topPanel.add(topRightPanel, BorderLayout.EAST);
 
         JScrollPane scrollPane = new JScrollPane(reserveTable);
-        scrollPane.setBorder(BorderFactory.createLineBorder(ColorTheme.BORDER, 1));
+        scrollPane.setBorder(BorderFactory.createLineBorder(TemaCores.BORDER, 1));
         scrollPane.getViewport().setBackground(Color.WHITE);
 
         add(topPanel, BorderLayout.NORTH);
@@ -164,7 +158,7 @@ public class ReservePanel extends JPanel implements MainFrame.RefreshablePanel {
 
     private void addToReserve() {
         try {
-            BigDecimal amount = CurrencyUtil.parse(amountField.getText());
+            BigDecimal amount = MoedaUtil.parse(amountField.getText());
             String description = descriptionField.getText();
 
             mainController.getReserveController().addToReserve(amount, description);
@@ -185,10 +179,10 @@ public class ReservePanel extends JPanel implements MainFrame.RefreshablePanel {
     @Override
     public void refresh() {
         BigDecimal totalReserve = mainController.getReserveController().getTotalReserve();
-        totalReserveLabel.setText(CurrencyUtil.format(totalReserve));
+        totalReserveLabel.setText(MoedaUtil.format(totalReserve));
 
-        List<Reserve> reserves = mainController.getReserveController().getAllReserves();
-        tableModel.setReserves(reserves);
+        List<Reserva> reservas = mainController.getReserveController().getAllReserves();
+        tableModel.setReserves(reservas);
 
         revalidate();
         repaint();
@@ -196,16 +190,16 @@ public class ReservePanel extends JPanel implements MainFrame.RefreshablePanel {
 
     private static class ReserveTableModel extends AbstractTableModel {
         private final String[] columnNames = {"Data", "Valor", "Descrição"};
-        private List<Reserve> reserves = new java.util.ArrayList<>();
+        private List<Reserva> reservas = new java.util.ArrayList<>();
 
-        public void setReserves(List<Reserve> reserves) {
-            this.reserves = reserves != null ? reserves : new java.util.ArrayList<>();
+        public void setReserves(List<Reserva> reservas) {
+            this.reservas = reservas != null ? reservas : new java.util.ArrayList<>();
             fireTableDataChanged();
         }
 
         @Override
         public int getRowCount() {
-            return reserves.size();
+            return reservas.size();
         }
 
         @Override
@@ -220,11 +214,11 @@ public class ReservePanel extends JPanel implements MainFrame.RefreshablePanel {
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            Reserve reserve = reserves.get(rowIndex);
+            Reserva reserva = reservas.get(rowIndex);
             return switch (columnIndex) {
-                case 0 -> DateUtils.formatDate(reserve.getDate());
-                case 1 -> CurrencyUtil.format(reserve.getAmount());
-                case 2 -> reserve.getDescription();
+                case 0 -> DataUtil.formatDate(reserva.getDate());
+                case 1 -> MoedaUtil.format(reserva.getAmount());
+                case 2 -> reserva.getDescription();
                 default -> null;
             };
         }

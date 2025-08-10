@@ -2,9 +2,9 @@ package io.hdmpedro.financeiro.view.panels;
 
 
 import io.hdmpedro.financeiro.controller.MainController;
-import io.hdmpedro.financeiro.models.DailyBalance;
-import io.hdmpedro.financeiro.util.ColorTheme;
-import io.hdmpedro.financeiro.util.CurrencyUtil;
+import io.hdmpedro.financeiro.models.BalancoDiario;
+import io.hdmpedro.financeiro.util.MoedaUtil;
+import io.hdmpedro.financeiro.util.TemaCores;
 import io.hdmpedro.financeiro.view.MainFrame;
 
 import javax.swing.*;
@@ -14,14 +14,14 @@ import java.time.LocalDate;
 import java.time.YearMonth;
 import java.util.List;
 
-public class CalendarPanel extends JPanel implements MainFrame.RefreshablePanel {
+public class CalendarioPanel extends JPanel implements MainFrame.RefreshablePanel {
     private final MainController mainController;
     private JPanel calendarGrid;
     private JComboBox<String> monthCombo;
     private JComboBox<Integer> yearCombo;
     private LocalDate selectedDate;
 
-    public CalendarPanel(MainController mainController) {
+    public CalendarioPanel(MainController mainController) {
         this.mainController = mainController;
         this.selectedDate = LocalDate.now();
         initializePanel();
@@ -32,7 +32,7 @@ public class CalendarPanel extends JPanel implements MainFrame.RefreshablePanel 
 
     private void initializePanel() {
         setLayout(new BorderLayout());
-        setBackground(ColorTheme.BACKGROUND);
+        setBackground(TemaCores.BACKGROUND);
         setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
     }
 
@@ -60,14 +60,14 @@ public class CalendarPanel extends JPanel implements MainFrame.RefreshablePanel 
 
     private void createCalendarGrid() {
         calendarGrid = new JPanel(new GridLayout(7, 7, 2, 2));
-        calendarGrid.setBackground(ColorTheme.BACKGROUND);
+        calendarGrid.setBackground(TemaCores.BACKGROUND);
 
         String[] dayNames = {"Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"};
         for (String dayName : dayNames) {
             JLabel label = new JLabel(dayName, SwingConstants.CENTER);
             label.setFont(new Font("Segoe UI", Font.BOLD, 12));
-            label.setForeground(ColorTheme.TEXT_SECONDARY);
-            label.setBackground(ColorTheme.SURFACE_VARIANT);
+            label.setForeground(TemaCores.TEXT_SECONDARY);
+            label.setBackground(TemaCores.SURFACE_VARIANT);
             label.setOpaque(true);
             label.setBorder(BorderFactory.createEmptyBorder(10, 5, 10, 5));
             calendarGrid.add(label);
@@ -76,7 +76,7 @@ public class CalendarPanel extends JPanel implements MainFrame.RefreshablePanel 
 
     private void layoutComponents() {
         JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
-        topPanel.setBackground(ColorTheme.BACKGROUND);
+        topPanel.setBackground(TemaCores.BACKGROUND);
         topPanel.add(new JLabel("Mês:"));
         topPanel.add(monthCombo);
         topPanel.add(Box.createHorizontalStrut(10));
@@ -101,8 +101,8 @@ public class CalendarPanel extends JPanel implements MainFrame.RefreshablePanel 
         for (String dayName : dayNames) {
             JLabel label = new JLabel(dayName, SwingConstants.CENTER);
             label.setFont(new Font("Segoe UI", Font.BOLD, 12));
-            label.setForeground(ColorTheme.TEXT_SECONDARY);
-            label.setBackground(ColorTheme.SURFACE_VARIANT);
+            label.setForeground(TemaCores.TEXT_SECONDARY);
+            label.setBackground(TemaCores.SURFACE_VARIANT);
             label.setOpaque(true);
             label.setBorder(BorderFactory.createEmptyBorder(10, 5, 10, 5));
             calendarGrid.add(label);
@@ -116,11 +116,11 @@ public class CalendarPanel extends JPanel implements MainFrame.RefreshablePanel 
             calendarGrid.add(createEmptyDayPanel());
         }
 
-        List<DailyBalance> dailyBalances = mainController.getCalendarService()
+        List<BalancoDiario> balancoDiarios = mainController.getCalendarService()
                 .getMonthlyCalendar(selectedDate.getMonthValue(), selectedDate.getYear());
 
-        for (DailyBalance dailyBalance : dailyBalances) {
-            calendarGrid.add(createDayPanel(dailyBalance));
+        for (BalancoDiario balancoDiario : balancoDiarios) {
+            calendarGrid.add(createDayPanel(balancoDiario));
         }
 
         while (calendarGrid.getComponentCount() < 49) {
@@ -131,41 +131,41 @@ public class CalendarPanel extends JPanel implements MainFrame.RefreshablePanel 
         calendarGrid.repaint();
     }
 
-    private JPanel createDayPanel(DailyBalance dailyBalance) {
+    private JPanel createDayPanel(BalancoDiario balancoDiario) {
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBackground(Color.WHITE);
-        panel.setBorder(BorderFactory.createLineBorder(ColorTheme.BORDER, 1));
+        panel.setBorder(BorderFactory.createLineBorder(TemaCores.BORDER, 1));
         panel.setPreferredSize(new Dimension(100, 80));
 
-        JLabel dayLabel = new JLabel(String.valueOf(dailyBalance.getDate().getDayOfMonth()),
+        JLabel dayLabel = new JLabel(String.valueOf(balancoDiario.getDate().getDayOfMonth()),
                 SwingConstants.CENTER);
         dayLabel.setFont(new Font("Segoe UI", Font.BOLD, 14));
 
-        if (dailyBalance.getDate().equals(LocalDate.now())) {
+        if (balancoDiario.getDate().equals(LocalDate.now())) {
             dayLabel.setForeground(Color.WHITE);
             dayLabel.setOpaque(true);
-            dayLabel.setBackground(ColorTheme.PRIMARY);
+            dayLabel.setBackground(TemaCores.PRIMARY);
         } else {
-            dayLabel.setForeground(ColorTheme.TEXT_PRIMARY);
+            dayLabel.setForeground(TemaCores.TEXT_PRIMARY);
         }
 
         JPanel balancePanel = new JPanel();
         balancePanel.setLayout(new BoxLayout(balancePanel, BoxLayout.Y_AXIS));
         balancePanel.setBackground(Color.WHITE);
 
-        if (!dailyBalance.getBalance().equals(java.math.BigDecimal.ZERO)) {
-            JLabel balanceLabel = new JLabel(CurrencyUtil.format(dailyBalance.getBalance()),
+        if (!balancoDiario.getBalance().equals(java.math.BigDecimal.ZERO)) {
+            JLabel balanceLabel = new JLabel(MoedaUtil.format(balancoDiario.getBalance()),
                     SwingConstants.CENTER);
             balanceLabel.setFont(new Font("Segoe UI", Font.PLAIN, 10));
-            balanceLabel.setForeground(ColorTheme.getBalanceColor(
-                    dailyBalance.getBalance().compareTo(java.math.BigDecimal.ZERO) >= 0));
+            balanceLabel.setForeground(TemaCores.getBalanceColor(
+                    balancoDiario.getBalance().compareTo(java.math.BigDecimal.ZERO) >= 0));
             balancePanel.add(balanceLabel);
         }
 
         boolean hasTransactions = mainController.getCalendarService()
-                .hasTransactionsOnDate(dailyBalance.getDate());
+                .hasTransactionsOnDate(balancoDiario.getDate());
         if (hasTransactions) {
-            panel.setBackground(ColorTheme.withAlpha(ColorTheme.PRIMARY, 30));
+            panel.setBackground(TemaCores.withAlpha(TemaCores.PRIMARY, 30));
         }
 
         panel.add(dayLabel, BorderLayout.NORTH);
@@ -176,8 +176,8 @@ public class CalendarPanel extends JPanel implements MainFrame.RefreshablePanel 
 
     private JPanel createEmptyDayPanel() {
         JPanel panel = new JPanel();
-        panel.setBackground(ColorTheme.SURFACE_VARIANT);
-        panel.setBorder(BorderFactory.createLineBorder(ColorTheme.BORDER, 1));
+        panel.setBackground(TemaCores.SURFACE_VARIANT);
+        panel.setBorder(BorderFactory.createLineBorder(TemaCores.BORDER, 1));
         panel.setPreferredSize(new Dimension(100, 80));
         return panel;
     }

@@ -4,7 +4,7 @@ package io.hdmpedro.financeiro.util;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Locale;
-public class CurrencyUtil {
+public class MoedaUtil {
     private static final Locale LOCALE_PT_BR = new Locale("pt", "BR");
     private static final NumberFormat CURRENCY_FORMAT =
             NumberFormat.getCurrencyInstance(LOCALE_PT_BR);

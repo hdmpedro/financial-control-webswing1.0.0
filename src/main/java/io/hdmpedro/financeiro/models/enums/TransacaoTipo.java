@@ -1,14 +1,14 @@
 package io.hdmpedro.financeiro.models.enums;
 
 
-public enum TransactionType {
+public enum TransacaoTipo {
     ENTRADA("Entrada", "#4CAF50"),
     SAIDA("Saída", "#F44336");
 
     private final String displayName;
     private final String color;
 
-    TransactionType(String displayName, String color) {
+    TransacaoTipo(String displayName, String color) {
         this.displayName = displayName;
         this.color = color;
     }

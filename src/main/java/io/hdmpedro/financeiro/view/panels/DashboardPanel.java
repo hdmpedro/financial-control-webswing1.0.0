@@ -2,12 +2,13 @@ package io.hdmpedro.financeiro.view.panels;
 
 
 import io.hdmpedro.financeiro.controller.MainController;
-import io.hdmpedro.financeiro.models.Category;
-import io.hdmpedro.financeiro.util.ColorTheme;
-import io.hdmpedro.financeiro.util.CurrencyUtil;
-import io.hdmpedro.financeiro.util.DateUtils;
+import io.hdmpedro.financeiro.models.Categoria;
+import io.hdmpedro.financeiro.models.enums.TransacaoTipo;
+import io.hdmpedro.financeiro.util.DataUtil;
+import io.hdmpedro.financeiro.util.TemaCores;
+import io.hdmpedro.financeiro.util.MoedaUtil;
 import io.hdmpedro.financeiro.view.MainFrame;
-import io.hdmpedro.financeiro.view.components.ModernButton;
+import io.hdmpedro.financeiro.view.components.BotaoModerno;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,7 +38,7 @@ public class DashboardPanel extends JPanel implements MainFrame.RefreshablePanel
 
     private void initializePanel() {
         setLayout(new BorderLayout());
-        setBackground(ColorTheme.BACKGROUND);
+        setBackground(TemaCores.BACKGROUND);
         setBorder(BorderFactory.createEmptyBorder(20, 30, 20, 30));
     }
 
@@ -49,29 +50,29 @@ public class DashboardPanel extends JPanel implements MainFrame.RefreshablePanel
 
     private void createSummaryCards() {
         summaryCardsPanel = new JPanel(new GridLayout(1, 4, 20, 0));
-        summaryCardsPanel.setBackground(ColorTheme.BACKGROUND);
+        summaryCardsPanel.setBackground(TemaCores.BACKGROUND);
 
         summaryCardsPanel.add(createSummaryCard("Saldo Atual", "R$ 0,00",
-                ColorTheme.PRIMARY, currentBalanceLabel = new JLabel()));
+                TemaCores.PRIMARY, currentBalanceLabel = new JLabel()));
         summaryCardsPanel.add(createSummaryCard("Reserva Total", "R$ 0,00",
-                ColorTheme.SUCCESS, totalReserveLabel = new JLabel()));
+                TemaCores.SUCCESS, totalReserveLabel = new JLabel()));
         summaryCardsPanel.add(createSummaryCard("Entradas do Mês", "R$ 0,00",
-                ColorTheme.ACCENT, monthlyIncomeLabel = new JLabel()));
+                TemaCores.ACCENT, monthlyIncomeLabel = new JLabel()));
         summaryCardsPanel.add(createSummaryCard("Saídas do Mês", "R$ 0,00",
-                ColorTheme.ERROR, monthlyExpensesLabel = new JLabel()));
+                TemaCores.ERROR, monthlyExpensesLabel = new JLabel()));
     }
 
     private JPanel createSummaryCard(String title, String initialValue, Color color, JLabel valueLabel) {
         JPanel card = new JPanel(new BorderLayout());
         card.setBackground(Color.WHITE);
         card.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(ColorTheme.BORDER, 1),
+                BorderFactory.createLineBorder(TemaCores.BORDER, 1),
                 BorderFactory.createEmptyBorder(20, 20, 20, 20)
         ));
 
         JLabel titleLabel = new JLabel(title);
         titleLabel.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        titleLabel.setForeground(ColorTheme.TEXT_SECONDARY);
+        titleLabel.setForeground(TemaCores.TEXT_SECONDARY);
 
         valueLabel.setText(initialValue);
         valueLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
@@ -90,11 +91,11 @@ public class DashboardPanel extends JPanel implements MainFrame.RefreshablePanel
 
     private void createQuickActions() {
         quickActionsPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 0, 10));
-        quickActionsPanel.setBackground(ColorTheme.BACKGROUND);
+        quickActionsPanel.setBackground(TemaCores.BACKGROUND);
 
-        ModernButton addTransactionBtn = new ModernButton("+ Nova Transação", ColorTheme.PRIMARY);
-        ModernButton addToReserveBtn = new ModernButton("+ Adicionar à Reserva", ColorTheme.SUCCESS);
-        ModernButton closeMonthBtn = new ModernButton("Fechar Mês", ColorTheme.WARNING);
+        BotaoModerno addTransactionBtn = new BotaoModerno("+ Nova Transação", TemaCores.PRIMARY);
+        BotaoModerno addToReserveBtn = new BotaoModerno("+ Adicionar à Reserva", TemaCores.SUCCESS);
+        BotaoModerno closeMonthBtn = new BotaoModerno("Fechar Mês", TemaCores.WARNING);
 
         addTransactionBtn.addActionListener(e -> showAddTransactionDialog());
         addToReserveBtn.addActionListener(e -> showAddToReserveDialog());
@@ -110,16 +111,16 @@ public class DashboardPanel extends JPanel implements MainFrame.RefreshablePanel
     private void createAlertsPanel() {
         alertsPanel = new JPanel();
         alertsPanel.setLayout(new BoxLayout(alertsPanel, BoxLayout.Y_AXIS));
-        alertsPanel.setBackground(ColorTheme.BACKGROUND);
+        alertsPanel.setBackground(TemaCores.BACKGROUND);
     }
 
     private void layoutComponents() {
         JPanel topPanel = new JPanel(new BorderLayout());
-        topPanel.setBackground(ColorTheme.BACKGROUND);
+        topPanel.setBackground(TemaCores.BACKGROUND);
         topPanel.add(summaryCardsPanel, BorderLayout.CENTER);
 
         JPanel middlePanel = new JPanel(new BorderLayout());
-        middlePanel.setBackground(ColorTheme.BACKGROUND);
+        middlePanel.setBackground(TemaCores.BACKGROUND);
         middlePanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
         middlePanel.add(quickActionsPanel, BorderLayout.WEST);
 
@@ -158,31 +159,31 @@ public class DashboardPanel extends JPanel implements MainFrame.RefreshablePanel
         BigDecimal totalReserve = mainController.getReserveController().getTotalReserve();
 
         BigDecimal monthlyIncome = mainController.getTransactionService()
-                .getTotalByType(io.hdmpedro.financeiro.models.enums.TransactionType.ENTRADA,
+                .getTotalByType(TransacaoTipo.ENTRADA,
                         currentMonth, currentYear);
         BigDecimal monthlyExpenses = mainController.getTransactionService()
-                .getTotalByType(io.hdmpedro.financeiro.models.enums.TransactionType.SAIDA,
+                .getTotalByType(TransacaoTipo.SAIDA,
                         currentMonth, currentYear);
 
-        currentBalanceLabel.setText(CurrencyUtil.format(currentBalance));
-        currentBalanceLabel.setForeground(ColorTheme.getBalanceColor(
+        currentBalanceLabel.setText(MoedaUtil.format(currentBalance));
+        currentBalanceLabel.setForeground(TemaCores.getBalanceColor(
                 currentBalance.compareTo(BigDecimal.ZERO) >= 0));
 
-        totalReserveLabel.setText(CurrencyUtil.format(totalReserve));
-        monthlyIncomeLabel.setText(CurrencyUtil.format(monthlyIncome));
-        monthlyExpensesLabel.setText(CurrencyUtil.format(monthlyExpenses));
+        totalReserveLabel.setText(MoedaUtil.format(totalReserve));
+        monthlyIncomeLabel.setText(MoedaUtil.format(monthlyIncome));
+        monthlyExpensesLabel.setText(MoedaUtil.format(monthlyExpenses));
     }
 
     private void updateAlerts() {
         alertsPanel.removeAll();
 
-        List<Category> overBudgetCategories = mainController.getCategoryController()
+        List<Categoria> overBudgetCategories = mainController.getCategoryController()
                 .getOverBudgetCategories();
 
         if (!overBudgetCategories.isEmpty()) {
             JPanel alertCard = createAlertCard("Atenção: Orçamento Excedido",
                     overBudgetCategories.size() + " categoria(s) excederam o orçamento",
-                    ColorTheme.WARNING);
+                    TemaCores.WARNING);
             alertsPanel.add(alertCard);
             alertsPanel.add(Box.createRigidArea(new Dimension(0, 10)));
         }
@@ -191,15 +192,15 @@ public class DashboardPanel extends JPanel implements MainFrame.RefreshablePanel
         if (now.getDayOfMonth() >= 25 && !mainController.getMonthlyClosureController()
                 .isMonthClosed(now.getMonthValue(), now.getYear())) {
             JPanel alertCard = createAlertCard("Lembrete",
-                    "Considere fechar o mês de " + DateUtils.formatFullMonthYear(now),
-                    ColorTheme.PRIMARY);
+                    "Considere fechar o mês de " + DataUtil.formatFullMonthYear(now),
+                    TemaCores.PRIMARY);
             alertsPanel.add(alertCard);
         }
     }
 
     private JPanel createAlertCard(String title, String message, Color color) {
         JPanel card = new JPanel(new BorderLayout());
-        card.setBackground(ColorTheme.withAlpha(color, 50));
+        card.setBackground(TemaCores.withAlpha(color, 50));
         card.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(color, 1),
                 BorderFactory.createEmptyBorder(15, 20, 15, 20)
@@ -212,11 +213,11 @@ public class DashboardPanel extends JPanel implements MainFrame.RefreshablePanel
 
         JLabel messageLabel = new JLabel(message);
         messageLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        messageLabel.setForeground(ColorTheme.TEXT_SECONDARY);
+        messageLabel.setForeground(TemaCores.TEXT_SECONDARY);
 
         JPanel textPanel = new JPanel();
         textPanel.setLayout(new BoxLayout(textPanel, BoxLayout.Y_AXIS));
-        textPanel.setBackground(ColorTheme.withAlpha(color, 50));
+        textPanel.setBackground(TemaCores.withAlpha(color, 50));
         textPanel.add(titleLabel);
         textPanel.add(messageLabel);
 

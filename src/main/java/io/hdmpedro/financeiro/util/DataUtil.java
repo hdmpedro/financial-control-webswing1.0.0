@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.WeekFields;
 import java.util.Locale;
 
-public class DateUtils {
+public class DataUtil {
     public static final DateTimeFormatter DISPLAY_FORMAT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
     public static final DateTimeFormatter MONTH_YEAR_FORMAT = DateTimeFormatter.ofPattern("MM/yyyy");
     public static final DateTimeFormatter FULL_MONTH_YEAR = DateTimeFormatter.ofPattern("MMMM yyyy", new Locale("pt", "BR"));

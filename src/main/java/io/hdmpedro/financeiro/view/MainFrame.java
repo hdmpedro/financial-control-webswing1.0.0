@@ -2,13 +2,12 @@ package io.hdmpedro.financeiro.view;
 
 // teste commit
 import io.hdmpedro.financeiro.controller.MainController;
-import io.hdmpedro.financeiro.util.ColorTheme;
-import io.hdmpedro.financeiro.view.components.ModernButton;
+import io.hdmpedro.financeiro.util.TemaCores;
+import io.hdmpedro.financeiro.view.components.BotaoModerno;
 import io.hdmpedro.financeiro.view.panels.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 public class MainFrame extends JFrame {
     private final MainController mainController;
@@ -17,12 +16,12 @@ public class MainFrame extends JFrame {
 
     private DashboardPanel dashboardPanel;
   //  private TransactionPanel transactionPanel;
-    private CalendarPanel calendarPanel;
-    private CategoryPanel categoryPanel;
-    private ReservePanel reservePanel;
-    private ReportsPanel reportsPanel;
+    private CalendarioPanel calendarioPanel;
+    private CategoriaPanel categoriaPanel;
+    private ReservaPanel reservaPanel;
+    private RelatoriosPanel relatoriosPanel;
 
-    private ModernButton currentSelectedButton;
+    private BotaoModerno currentSelectedButton;
 
     public MainFrame(MainController mainController) {
         this.mainController = mainController;
@@ -39,19 +38,19 @@ public class MainFrame extends JFrame {
         setLocationRelativeTo(null);
         setMinimumSize(new Dimension(1200, 800));
 
-        getContentPane().setBackground(ColorTheme.BACKGROUND);
+        getContentPane().setBackground(TemaCores.BACKGROUND);
     }
 
     private void createComponents() {
         dashboardPanel = new DashboardPanel(mainController);
         //transactionPanel = new TransactionPanel(mainController);
-        calendarPanel = new CalendarPanel(mainController);
-        categoryPanel = new CategoryPanel(mainController);
-        reservePanel = new ReservePanel(mainController);
-        reportsPanel = new ReportsPanel(mainController);
+        calendarioPanel = new CalendarioPanel(mainController);
+        categoriaPanel = new CategoriaPanel(mainController);
+        reservaPanel = new ReservaPanel(mainController);
+        relatoriosPanel = new RelatoriosPanel(mainController);
 
         contentPanel = new JPanel(new BorderLayout());
-        contentPanel.setBackground(ColorTheme.BACKGROUND);
+        contentPanel.setBackground(TemaCores.BACKGROUND);
 
         createSidebar();
     }
@@ -59,7 +58,7 @@ public class MainFrame extends JFrame {
     private void createSidebar() {
         sidebarPanel = new JPanel();
         sidebarPanel.setLayout(new BoxLayout(sidebarPanel, BoxLayout.Y_AXIS));
-        sidebarPanel.setBackground(ColorTheme.PRIMARY);
+        sidebarPanel.setBackground(TemaCores.PRIMARY);
         sidebarPanel.setPreferredSize(new Dimension(250, 0));
         sidebarPanel.setBorder(BorderFactory.createEmptyBorder(20, 0, 20, 0));
 
@@ -83,13 +82,13 @@ public class MainFrame extends JFrame {
 
         JLabel versionLabel = new JLabel("v1.0.0");
         versionLabel.setFont(new Font("Segoe UI", Font.PLAIN, 12));
-        versionLabel.setForeground(ColorTheme.withAlpha(Color.WHITE, 150));
+        versionLabel.setForeground(TemaCores.withAlpha(Color.WHITE, 150));
         versionLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
         sidebarPanel.add(versionLabel);
     }
 
     private void addSidebarButton(String text, Runnable action) {
-        ModernButton button = new ModernButton(text, ColorTheme.PRIMARY);
+        BotaoModerno button = new BotaoModerno(text, TemaCores.PRIMARY);
         button.setMaximumSize(new Dimension(200, 45));
         button.setAlignmentX(Component.CENTER_ALIGNMENT);
         button.setFont(new Font("Segoe UI", Font.PLAIN, 14));
@@ -108,13 +107,13 @@ public class MainFrame extends JFrame {
         }
     }
 
-    private void setSelectedButton(ModernButton button) {
+    private void setSelectedButton(BotaoModerno button) {
         if (currentSelectedButton != null) {
-            currentSelectedButton.setBackground(ColorTheme.PRIMARY);
+            currentSelectedButton.setBackground(TemaCores.PRIMARY);
         }
 
         currentSelectedButton = button;
-        button.setBackground(ColorTheme.PRIMARY_LIGHT);
+        button.setBackground(TemaCores.PRIMARY_LIGHT);
     }
 
     private void layoutComponents() {
@@ -136,19 +135,19 @@ public class MainFrame extends JFrame {
   ///  }
 
     private void showCalendar() {
-        setContentPanel(calendarPanel, "Calendário Financeiro");
+        setContentPanel(calendarioPanel, "Calendário Financeiro");
     }
 
     private void showCategories() {
-        setContentPanel(categoryPanel, "Gerenciar Categorias");
+        setContentPanel(categoriaPanel, "Gerenciar Categorias");
     }
 
     private void showReserve() {
-        setContentPanel(reservePanel, "Reserva de Emergência");
+        setContentPanel(reservaPanel, "Reserva de Emergência");
     }
 
     private void showReports() {
-        setContentPanel(reportsPanel, "Relatórios e Análises");
+        setContentPanel(relatoriosPanel, "Relatórios e Análises");
     }
 
     private void setContentPanel(JPanel panel, String title) {
@@ -170,13 +169,13 @@ public class MainFrame extends JFrame {
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setBackground(Color.WHITE);
         headerPanel.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createMatteBorder(0, 0, 1, 0, ColorTheme.BORDER),
+                BorderFactory.createMatteBorder(0, 0, 1, 0, TemaCores.BORDER),
                 BorderFactory.createEmptyBorder(20, 30, 20, 30)
         ));
 
         JLabel titleLabel = new JLabel(title);
         titleLabel.setFont(new Font("Segoe UI", Font.BOLD, 24));
-        titleLabel.setForeground(ColorTheme.TEXT_PRIMARY);
+        titleLabel.setForeground(TemaCores.TEXT_PRIMARY);
 
         headerPanel.add(titleLabel, BorderLayout.WEST);
 
@@ -186,10 +185,10 @@ public class MainFrame extends JFrame {
     public void refreshAllPanels() {
         if (dashboardPanel != null) dashboardPanel.refresh();
      //   if (transactionPanel != null) transactionPanel.refresh();
-        if (calendarPanel != null) calendarPanel.refresh();
-        if (categoryPanel != null) categoryPanel.refresh();
-        if (reservePanel != null) reservePanel.refresh();
-        if (reportsPanel != null) reportsPanel.refresh();
+        if (calendarioPanel != null) calendarioPanel.refresh();
+        if (categoriaPanel != null) categoriaPanel.refresh();
+        if (reservaPanel != null) reservaPanel.refresh();
+        if (relatoriosPanel != null) relatoriosPanel.refresh();
     }
 
     public interface RefreshablePanel {

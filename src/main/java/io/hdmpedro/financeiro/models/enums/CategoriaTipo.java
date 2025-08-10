@@ -1,7 +1,7 @@
 package io.hdmpedro.financeiro.models.enums;
 
 
-public enum CategoryType {
+public enum CategoriaTipo {
     TRANSPORTE("Transporte", "#2196F3"),
     ALIMENTACAO("Alimentação", "#FF9800"),
     MORADIA("Moradia", "#9C27B0"),
@@ -18,7 +18,7 @@ public enum CategoryType {
     private final String displayName;
     private final String color;
 
-    CategoryType(String displayName, String color) {
+    CategoriaTipo(String displayName, String color) {
         this.displayName = displayName;
         this.color = color;
     }

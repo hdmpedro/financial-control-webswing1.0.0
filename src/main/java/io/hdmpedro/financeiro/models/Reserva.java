@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Reserve {
+public class Reserva {
     private Long id;
     private BigDecimal amount;
     private String description;
@@ -13,12 +13,12 @@ public class Reserve {
     private LocalDateTime createdAt;
     private boolean isFromMonthlyBalance;
 
-    public Reserve() {
+    public Reserva() {
         this.createdAt = LocalDateTime.now();
         this.isFromMonthlyBalance = false;
     }
 
-    public Reserve(BigDecimal amount, String description, LocalDate date) {
+    public Reserva(BigDecimal amount, String description, LocalDate date) {
         this();
         this.amount = amount;
         this.description = description;

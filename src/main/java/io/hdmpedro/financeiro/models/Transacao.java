@@ -2,29 +2,29 @@ package io.hdmpedro.financeiro.models;
 
 
 
-import io.hdmpedro.financeiro.models.enums.CategoryType;
-import io.hdmpedro.financeiro.models.enums.TransactionType;
+import io.hdmpedro.financeiro.models.enums.CategoriaTipo;
+import io.hdmpedro.financeiro.models.enums.TransacaoTipo;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.math.BigDecimal;
 
-public class Transaction {
+public class Transacao {
     private Long id;
     private String description;
     private BigDecimal amount;
-    private TransactionType type;
-    private CategoryType category;
+    private TransacaoTipo type;
+    private CategoriaTipo category;
     private LocalDate date;
     private LocalDateTime createdAt;
     private String notes;
 
-    public Transaction() {
+    public Transacao() {
         this.createdAt = LocalDateTime.now();
     }
 
-    public Transaction(String description, BigDecimal amount, TransactionType type,
-                       CategoryType category, LocalDate date) {
+    public Transacao(String description, BigDecimal amount, TransacaoTipo type,
+                     CategoriaTipo category, LocalDate date) {
         this();
         this.description = description;
         this.amount = amount;
@@ -57,19 +57,19 @@ public class Transaction {
         this.date = date;
     }
 
-    public CategoryType getCategory() {
+    public CategoriaTipo getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryType category) {
+    public void setCategory(CategoriaTipo category) {
         this.category = category;
     }
 
-    public TransactionType getType() {
+    public TransacaoTipo getType() {
         return type;
     }
 
-    public void setType(TransactionType type) {
+    public void setType(TransacaoTipo type) {
         this.type = type;
     }
 
