@@ -45,7 +45,7 @@ io.hdmpedro.financeiro.service.FechamentoMesService
 io.hdmpedro.financeiro.service.CalendarioService
 io.hdmpedro.financeiro.controller.TransacaoController
 io.hdmpedro.financeiro.controller.CategoriaController
-io.hdmpedro.financeiro.controller.ReserveController
+io.hdmpedro.financeiro.controller.ReservaController
 io.hdmpedro.financeiro.controller.FechamentoMesController
 io.hdmpedro.financeiro.view.MainFrame
 io.hdmpedro.financeiro.view.panels.DashboardPanel

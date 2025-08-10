@@ -7,13 +7,13 @@ import javax.swing.SwingUtilities;
 public class MainController {
     private final TransacaoService transacaoService;
     private final CategoriaService categoriaService;
-    private final ReservaController reservaController;
+    private final io.hdmpedro.financeiro.service.ReservaController reservaController;
     private final FechamentoMesService fechamentoMesService;
     private final CalendarioService calendarioService;
 
     private final TransacaoController transacaoController;
     private final CategoriaController categoriaController;
-    private final ReserveController reserveController;
+    private final ReservaController reservaController;
     private final FechamentoMesController fechamentoMesController;
 
     private MainFrame mainFrame;
@@ -21,13 +21,13 @@ public class MainController {
     public MainController() {
         this.transacaoService = new TransacaoService();
         this.categoriaService = new CategoriaService();
-        this.reservaController = new ReservaController();
+        this.reservaController = new io.hdmpedro.financeiro.service.ReservaController();
         this.fechamentoMesService = new FechamentoMesService(transacaoService, reservaController);
         this.calendarioService = new CalendarioService(transacaoService);
 
         this.transacaoController = new TransacaoController(transacaoService, categoriaService);
         this.categoriaController = new CategoriaController(categoriaService);
-        this.reserveController = new ReserveController(reservaController);
+        this.reservaController = new ReservaController(reservaController);
         this.fechamentoMesController = new FechamentoMesController(
                 fechamentoMesService, reservaController, transacaoService);
     }
@@ -54,8 +54,8 @@ public class MainController {
         return categoriaController;
     }
 
-    public ReserveController getReserveController() {
-        return reserveController;
+    public ReservaController getReserveController() {
+        return reservaController;
     }
 
     public FechamentoMesController getMonthlyClosureController() {
@@ -70,7 +70,7 @@ public class MainController {
         return categoriaService;
     }
 
-    public ReservaController getReserveService() {
+    public io.hdmpedro.financeiro.service.ReservaController getReserveService() {
         return reservaController;
     }
 

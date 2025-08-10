@@ -2,16 +2,15 @@ package io.hdmpedro.financeiro.controller;
 
 
 import io.hdmpedro.financeiro.models.Reserva;
-import io.hdmpedro.financeiro.service.ReservaController;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
 
-public class ReserveController {
-    private final ReservaController reservaController;
+public class ReservaController {
+    private final io.hdmpedro.financeiro.service.ReservaController reservaController;
 
-    public ReserveController(ReservaController reservaController) {
+    public ReservaController(io.hdmpedro.financeiro.service.ReservaController reservaController) {
         this.reservaController = reservaController;
     }
 
