@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html class="ws-fullscreen" lang="en">
+
+<head>
+    <title>Webswing Vaadin Integration</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Security-Policy" content="connect-src 'self' ws: wss: data:">
+    <meta charset="utf-8"/>
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <link rel="icon" href="../favicon.ico"/>
+    <link rel="stylesheet" href="../style.css" />
+    
+    <!-- hardcoded stylesheet, not generated -->
+    <link rel="stylesheet" href="style.css"/>
+</head>
+
+<body>
+    <template id="vaadin-available">
+      <iframe src="/vaadin" class="flex-grow"></iframe>
+    </template>
+    <template id="vaadin-unavailable">
+      <div class="max-w-4xl">
+        Vaadin integration example is available only on our <a href="https://prototype.webswing.org/migration-examples/vaadin" target="_blank" class="underline text-primary">demo server</a>.
+      </div>
+    </template>
+
+    <ws-layout>
+        <ws-tabs id="ws-tabs">
+          <ws-tab label="Home">
+            <div class="container mx-auto px-4">
+                <main class="flex flex-col justify-center">
+                    <div class="flex items-center justify-center">
+                      <a href="https://webswing.org" target="_blank" rel="noreferrer"> 
+                        <img src="img/ws.svg" class="logo" alt="Webswing Logo" />
+                      </a>
+                      <div class='text-3xl font-bold'>+</div>
+                      <a href="https://vaadin.com/" target="_blank" rel="noreferrer"> 
+                        <img src="img/vaadin.svg" class="logo Vaadin" alt="Vaadin Logo" />
+                      </a>
+                    </div>
+                    
+                    <h1 class="mb-4 text-center">Webswing & Vaadin Integration</h1>
+                  
+                    <div class="max-w-4xl self-center">
+                      This simple example shows how Webswing integrates with Vaadin application. The Swing application and Vaadin communicate with each other through WebSocket.
+                      Click on a table row to show an HTML form with details. When the form is submitted, changes are applied to Swing application.
+                      <br />
+                      <br />
+                      Click the Show Example button to see the Vaadin application with embedded Webswing application.
+                      
+                      <div class="mt-4">
+                        <button id="vaadin-show-table" class="inline-flex items-center border rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 transition ease-in-out duration-300 whitespace-nowrap px-4 py-2 text-base font-medium h-[42px] border-transparent bg-primary hover:bg-primary_dark focus:ring-primary text-white"
+                             type="button">Show Example</button>
+                      </div>
+                    </div>
+                </main>
+              </div>
+          </ws-tab>
+          <ws-tab id="table-tab" label="Webswing Table">
+            <div id="vaadin-content" class="flex flex-grow">
+            </div>
+          </ws-tab>
+        </ws-tabs>
+    </ws-layout>
+    <ws-toast></ws-toast>
+
+	<script type="module" src="../webswing-webcomponents.umd.js"></script>
+	<script src="index.js"></script>
+</body>
+
+</html>

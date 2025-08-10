@@ -1,0 +1,11 @@
+#fc-errors {
+	color: red;
+}
+
+#fc-progress {
+	display: none;
+}
+
+#fc-upload-input {
+	display: none;
+}

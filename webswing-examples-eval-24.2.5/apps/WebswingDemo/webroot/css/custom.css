@@ -1,0 +1,127 @@
+@font-face {
+    font-family: "Roboto-Regular.ttf";
+    src: url("../fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+    font-family: "RobotoMono-Regular.ttf";
+    src: url("../fonts/RobotoMono-Regular.ttf");
+}
+
+@font-face {
+    font-family: "RobotoSlab-Regular.ttf";
+    src: url("../fonts/RobotoSlab-Regular.ttf");
+}
+
+webswing-htmlpanel.modal-blocked {
+    filter: blur(2px);
+}
+
+.focusable:focus {
+    background-color: yellow;
+}
+
+webswing-button::part(root),
+webswing-togglebutton::part(root) {
+    font-size: 11px;
+    padding: 0;
+}
+
+webswing-menuitem::part(root),
+webswing-checkboxmenuitem::part(root),
+webswing-radiobuttonmenuitem::part(root),
+webswing-menu::part(root) {
+    font-size: 11px;
+}
+
+webswing-slider::part(root) {
+    margin: 0;
+}
+
+webswing-label::part(root) {
+    font-size: 11px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+webswing-passwordfield::part(root),
+webswing-textfield::part(root) {
+    font-size: 11px;
+}
+
+webswing-tooltip::part(root) {
+    font-size: 11px;
+    border: 1px solid black;
+}
+
+webswing-popupmenu::part(root) {
+    border: 1px solid #AEAEAE;
+}
+
+webswing-checkbox::part(label),
+webswing-radiobutton::part(label) {
+    font-size: 11px;
+    user-select: none;
+}
+
+webswing-radiobutton::part(radiobutton) {
+    margin: 3px 3px 3px 4px;
+}
+
+pre.code {
+    margin: 0;
+    width: max-content;
+}
+
+pre.code code {
+    background: white;
+}
+
+#selected-demo-readme h4 {
+    margin-block-start: 0;
+}
+
+#fcPanel {
+    display: flex;
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    max-width: 300px;
+    width: 100vw;
+    align-items: center;
+    justify-content: center;
+}
+#fcPanel.hidden {
+    display: none;
+}
+
+#fc-progress {
+    margin-left: 10px;
+}
+
+#fc-errors {
+    color: red;
+}
+
+#selected-demo-readme {
+    padding: 1rem;
+}
+
+#webswing-font-preload {
+    position:fixed;
+    color:transparent;
+}
+
+#font-preload-rr {
+    font-family: 'Roboto-Regular.ttf';
+}
+
+#font-preload-rmr {
+    font-family: 'RobotoMono-Regular.ttf';
+}
+
+#font-preload-rsr {
+    font-family: 'RobotoSlab-Regular.ttf';
+}

@@ -1,0 +1,3 @@
+.focusable:focus {
+	background-color: yellow;
+}

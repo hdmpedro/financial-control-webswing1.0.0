@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google" content="notranslate">
+    <title>Webswing Migration</title>
+    <script type="module" crossorigin src="../assets/stage4-f98d9c2f.js"></script>
+    <link rel="modulepreload" crossorigin href="../assets/webswing-webcomponents-8b5589e8.js">
+    <link rel="modulepreload" crossorigin href="../assets/utils-09aa2f1a.js">
+    <link rel="stylesheet" href="../assets/webswing-webcomponents-8e54ce47.css">
+  </head>
+  <body>
+    <ws-layout pageTitle="Stage 4" pageIcon="4" pageDesc="Fully migrated reusing business logic">
+        <ws-tabs class="migration">
+            <ws-tab label="Introduction">
+                <ws-intro 
+                    introTitle="Stage 4" 
+                    introDesc="In the last stage we migrated the last Swing component which is the table. Although there is no Swing UI visible in the web page, we are still fetching data for the table from a running Webswing instance."
+                    introHref="/migration-examples/stage4/#table" 
+                    introButton="Show table" 
+                ></ws-intro>
+            </ws-tab>
+            <ws-tab label="Table">
+                <ws-table></ws-table>
+                <ws-map class="min-h-[50%]"></ws-map>
+            </ws-tab>
+        </ws-tabs>
+    </ws-layout>
+    <ws-modal class="migration" data-id="createRecord">
+        <ws-detail-form data-id="createForm"></ws-detail-form>
+    </ws-modal>
+    <ws-modal class="migration" data-id="editRecord">
+        <ws-detail-form data-id="editForm"></ws-detail-form>
+    </ws-modal>
+    <ws-modal 
+        class="migration" 
+        data-id="deleteRecord" 
+        content="Are you sure you want to delete this record?">
+    </ws-modal>
+    <ws-toast></ws-toast>
+    <div id="stage4-table" data-id="webswing-table" class="webswing-element"></div>
+    
+  </body>
+</html>

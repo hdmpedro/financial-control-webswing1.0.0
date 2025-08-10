@@ -1,0 +1,21 @@
+table, th, td {
+	border: 1px solid #777;
+	border-collapse: collapse;
+	padding: 4px 7px;
+}
+
+th {
+	background-color: #bbb;
+}
+
+tr:nth-child(odd) {
+	background-color: #eee;
+}
+
+#operation {
+	background-color: #ddd;
+}
+
+#filecontent {
+	white-space: pre
+}

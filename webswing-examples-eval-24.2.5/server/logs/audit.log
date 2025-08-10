@@ -1,0 +1,32 @@
+10-ago.-2025-12:38:56.419 | LOGIN | FAILED | admin | / | 127.0.0.1 | reason: Invalid Username or Password | protocol: http | module: org.webswing.server.core.services.security.modules.embedded.EmbeddedSecurityModule
+10-ago.-2025-12:39:37.530 | LOGIN | FAILED | admin | / | 127.0.0.1 | reason: Invalid Username or Password | protocol: http | module: org.webswing.server.core.services.security.modules.embedded.EmbeddedSecurityModule
+10-ago.-2025-12:39:45.160 | LOGIN | FAILED | user | / | 127.0.0.1 | reason: Invalid Username or Password | protocol: http | module: org.webswing.server.core.services.security.modules.embedded.EmbeddedSecurityModule
+10-ago.-2025-12:39:48.915 | LOGIN | FAILED | user | / | 127.0.0.1 | reason: Invalid Username or Password | protocol: http | module: org.webswing.server.core.services.security.modules.embedded.EmbeddedSecurityModule
+10-ago.-2025-12:40:42.924 | LOGIN | FAILED | user | / | 127.0.0.1 | reason: Invalid Username or Password | protocol: http | module: org.webswing.server.core.services.security.modules.embedded.EmbeddedSecurityModule
+10-ago.-2025-12:40:47.056 | LOGIN | FAILED | admin | / | 127.0.0.1 | reason: Invalid Username or Password | protocol: http | module: org.webswing.server.core.services.security.modules.embedded.EmbeddedSecurityModule
+10-ago.-2025-12:45:24.793 | LOGIN | FAILED | admin | / | 127.0.0.1 | reason: Invalid Username or Password | protocol: http | module: org.webswing.server.core.services.security.modules.embedded.EmbeddedSecurityModule
+10-ago.-2025-12:46:40.677 | LOGIN | FAILED | admin | / | 127.0.0.1 | reason: Invalid Username or Password | protocol: http | module: org.webswing.server.core.services.security.modules.embedded.EmbeddedSecurityModule
+10-ago.-2025-12:46:45.031 | LOGIN | FAILED | admin | / | 127.0.0.1 | reason: Invalid Username or Password | protocol: http | module: org.webswing.server.core.services.security.modules.embedded.EmbeddedSecurityModule
+10-ago.-2025-12:50:19.161 | LOGIN | SUCCESS | anonym | /financial-control | 127.0.0.1 | protocol: http | module: org.webswing.server.core.services.security.modules.anonym.AnonymSecurityModule
+10-ago.-2025-12:50:20.812 | INSTANCE | STARTED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_889194a4dee4_1754841019531
+10-ago.-2025-12:55:39.987 | INSTANCE | FINISHED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_889194a4dee4_1754841019531
+10-ago.-2025-12:55:56.165 | INSTANCE | STARTED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_889194a4dee4_1754841355001
+10-ago.-2025-12:58:16.703 | INSTANCE | FINISHED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_889194a4dee4_1754841355001
+10-ago.-2025-13:00:34.546 | INSTANCE | STARTED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_889194a4dee4_1754841633356
+10-ago.-2025-13:12:58.176 | LOGIN | SUCCESS | anonym | / | 191.5.33.25 | protocol: http | module: org.webswing.server.core.services.security.modules.anonym.AnonymSecurityModule
+10-ago.-2025-13:13:07.269 | LOGOUT | SUCCESS | anonym | / | 191.5.33.25 | protocol: http | module: org.webswing.server.core.services.security.modules.anonym.AnonymSecurityModule
+10-ago.-2025-13:13:09.734 | LOGIN | SUCCESS | anonym | / | 191.5.33.25 | protocol: http | module: org.webswing.server.core.services.security.modules.anonym.AnonymSecurityModule
+10-ago.-2025-13:13:20.233 | INSTANCE | FINISHED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_889194a4dee4_1754841633356
+10-ago.-2025-13:13:39.260 | LOGIN | SUCCESS | anonym | / | 191.5.33.25 | protocol: http | module: org.webswing.server.core.services.security.modules.anonym.AnonymSecurityModule
+10-ago.-2025-13:15:12.921 | INSTANCE | STARTED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_889194a4dee4_1754842511746
+10-ago.-2025-13:15:47.069 | INSTANCE | FINISHED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_889194a4dee4_1754842511746
+10-ago.-2025-13:15:47.091 | LOGOUT | SUCCESS | anonym | /financial-control | 127.0.0.1 | protocol: http | module: org.webswing.server.core.services.security.modules.anonym.AnonymSecurityModule
+10-ago.-2025-13:15:49.869 | LOGIN | SUCCESS | anonym | /financial-control | 127.0.0.1 | protocol: http | module: org.webswing.server.core.services.security.modules.anonym.AnonymSecurityModule
+10-ago.-2025-13:15:51.096 | INSTANCE | STARTED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_889194a4dee4_1754842550189
+10-ago.-2025-13:16:03.776 | LOGIN | SUCCESS | anonym | / | 191.5.33.25 | protocol: http | module: org.webswing.server.core.services.security.modules.anonym.AnonymSecurityModule
+10-ago.-2025-13:24:50.866 | LOGOUT | SUCCESS | anonym | / | 191.5.33.25 | protocol: http | module: org.webswing.server.core.services.security.modules.anonym.AnonymSecurityModule
+10-ago.-2025-13:24:52.433 | LOGIN | SUCCESS | anonym | / | 191.5.33.25 | protocol: http | module: org.webswing.server.core.services.security.modules.anonym.AnonymSecurityModule
+10-ago.-2025-13:25:26.346 | INSTANCE | FINISHED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_889194a4dee4_1754842550189
+10-ago.-2025-13:29:15.029 | LOGIN | SUCCESS | anonym | /financial-control | 127.0.0.1 | protocol: http | module: org.webswing.server.core.services.security.modules.anonym.AnonymSecurityModule
+10-ago.-2025-13:29:16.583 | INSTANCE | STARTED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_8a6e26ed29f3_1754843355399
+10-ago.-2025-13:34:35.733 | INSTANCE | FINISHED | anonym | /financial-control | 127.0.0.1 | instanceId: financial_control_anonym_8a6e26ed29f3_1754843355399

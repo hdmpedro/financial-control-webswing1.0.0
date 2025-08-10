@@ -1,0 +1,117 @@
+package io.hdmpedro.financeiro.view.components;
+
+
+import io.hdmpedro.financeiro.util.ColorTheme;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.renderer.category.BarRenderer;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.data.general.DefaultPieDataset;
+
+import javax.swing.*;
+import java.awt.*;
+import java.math.BigDecimal;
+import java.util.Map;
+
+public class ModernChartPanel extends JPanel {
+
+    public ModernChartPanel() {
+        setLayout(new BorderLayout());
+        setBackground(ColorTheme.SURFACE);
+    }
+
+    public void createPieChart(String title, Map<String, BigDecimal> data) {
+        DefaultPieDataset<String> dataset = new DefaultPieDataset<>();
+        data.forEach((key, value) -> dataset.setValue(key, value.doubleValue()));
+
+        JFreeChart chart = ChartFactory.createPieChart(
+                title,
+                dataset,
+                true,
+                true,
+                false
+        );
+
+        customizePieChart(chart);
+
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setBackground(ColorTheme.SURFACE);
+        chartPanel.setPreferredSize(new Dimension(400, 300));
+
+        removeAll();
+        add(chartPanel, BorderLayout.CENTER);
+        revalidate();
+        repaint();
+    }
+
+    public void createBarChart(String title, String xAxisLabel, String yAxisLabel,
+                               Map<String, BigDecimal> data) {
+        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+        data.forEach((key, value) -> dataset.addValue(value.doubleValue(), "Valores", key));
+
+        JFreeChart chart = ChartFactory.createBarChart(
+                title,
+                xAxisLabel,
+                yAxisLabel,
+                dataset
+        );
+
+        customizeBarChart(chart);
+
+        ChartPanel chartPanel = new ChartPanel(chart);
+        chartPanel.setBackground(ColorTheme.SURFACE);
+        chartPanel.setPreferredSize(new Dimension(600, 400));
+
+        removeAll();
+        add(chartPanel, BorderLayout.CENTER);
+        revalidate();
+        repaint();
+    }
+
+    private void customizePieChart(JFreeChart chart) {
+        chart.setBackgroundPaint(ColorTheme.SURFACE);
+        chart.getTitle().setPaint(ColorTheme.TEXT_PRIMARY);
+        chart.getTitle().setFont(new Font("Segoe UI", Font.BOLD, 16));
+
+        PiePlot plot = (PiePlot) chart.getPlot();
+        plot.setBackgroundPaint(ColorTheme.SURFACE);
+        plot.setOutlineVisible(false);
+        plot.setLabelFont(new Font("Segoe UI", Font.PLAIN, 12));
+        plot.setLabelPaint(ColorTheme.TEXT_PRIMARY);
+
+        Color[] colors = {
+                ColorTheme.PRIMARY,
+                ColorTheme.ACCENT,
+                ColorTheme.SUCCESS,
+                ColorTheme.ERROR,
+                ColorTheme.WARNING,
+                new Color(156, 39, 176),
+                new Color(0, 188, 212),
+                new Color(121, 85, 72)
+        };
+
+        int colorIndex = 0;
+        for (Object key : ((DefaultPieDataset<?>) plot.getDataset()).getKeys()) {
+            plot.setSectionPaint((Comparable<?>) key, colors[colorIndex % colors.length]);
+            colorIndex++;
+        }
+    }
+
+    private void customizeBarChart(JFreeChart chart) {
+        chart.setBackgroundPaint(ColorTheme.SURFACE);
+        chart.getTitle().setPaint(ColorTheme.TEXT_PRIMARY);
+        chart.getTitle().setFont(new Font("Segoe UI", Font.BOLD, 16));
+
+        CategoryPlot plot = chart.getCategoryPlot();
+        plot.setBackgroundPaint(ColorTheme.SURFACE);
+        plot.setRangeGridlinePaint(ColorTheme.BORDER);
+        plot.setOutlineVisible(false);
+
+        BarRenderer renderer = (BarRenderer) plot.getRenderer();
+        renderer.setSeriesPaint(0, ColorTheme.PRIMARY);
+        renderer.setBarPainter(new org.jfree.chart.renderer.category.StandardBarPainter());
+    }
+}

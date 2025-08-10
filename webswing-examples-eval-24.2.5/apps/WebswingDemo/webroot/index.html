@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html class="ws-fullscreen" lang="en">
+
+<head>
+    <title>Webswing</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/custom.css"/>
+    <link rel="stylesheet" href="css/highlight.css"/>
+    <link rel="icon" href="favicon.ico"/>
+    <link rel="manifest" href="manifest.json"/>
+
+    <script src="js/highlight.js"></script>
+    <script src="js/marked.js"></script>
+    
+    <link rel="stylesheet" href="css/fontawesome/css/font-awesome_5.13.0_all.min.css" />
+    <link rel="stylesheet" href="css/googlefont/google_font_Rubik_Poppins_300.css" />
+
+    <script src="js/amcharts_4_core.js"></script>
+    <script src="js/amcharts_4_charts.js"></script>
+    <script src="js/amcharts_4_themes_animated.js"></script>
+    <script src="js/amcharts_4_themes_material.js"></script>
+</head>
+
+<body>
+	<div class="webswing-element" data-webswing-instance="webswingInstance0">
+	    <div id="loading" class="ws-modal-container">
+	        <div class="ws-login">
+	            <div class="ws-login-content">
+	                <div class="ws-spinner">
+	                    <div class="ws-spinner-dot-1"></div>
+	                    <div class="ws-spinner-dot-2"></div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+	<div id="fcPanel" class="hidden">
+	    <span>Uploading...</span>
+	    <progress id="fc-progress" value="0" max="100"></progress>
+	    <br />
+	    <div id="fc-errors"></div>
+	</div>
+	
+	<div id="webswing-font-preload">
+	    <span id="font-preload-rr">a</span>
+	    <span id="font-preload-rmr">a</span>
+	    <span id="font-preload-rsr">a</span>
+	</div>
+	
+	<template id="template-readme">
+	    <div id="selected-demo-readme"></div>
+	</template>
+	<template id="template-source">
+	    <pre class="code"><code id="selected-demo-source"></code></pre>
+	</template>
+	
+	<script src="elements/ws-browser.js"></script>
+	<script src="elements/ws-html-panel-browser.js"></script>
+	<script src="elements/ws-personal-form.js"></script>
+	<script src="elements/ws-animation-panel.js"></script>
+	<script src="elements/ws-chart.js"></script>
+	<script src="elements/webswing-button.js"></script>
+	<script src="elements/webswing-label.js"></script>
+	<script src="elements/webswing-panel.js"></script>
+	<script src="elements/webswing-textfield.js"></script>
+	<script src="elements/webswing-combobox.js"></script>
+	<script src="elements/webswing-checkbox.js"></script>
+	<script src="elements/webswing-passwordfield.js"></script>
+	<script src="elements/webswing-radiobutton.js"></script>
+	<script src="elements/webswing-progressbar.js"></script>
+	<script src="elements/webswing-togglebutton.js"></script>
+	<script src="elements/webswing-separator.js"></script>
+	<script src="elements/webswing-popupmenuseparator.js"></script>
+	<script src="elements/webswing-toolbarseparator.js"></script>
+	<script src="elements/webswing-tooltip.js"></script>
+	<script src="elements/webswing-textarea.js"></script>
+	<script src="elements/webswing-slider.js"></script>
+	<script src="elements/webswing-popupmenu.js"></script>
+	<script src="elements/webswing-menuitem.js"></script>
+	<script src="elements/webswing-menu.js"></script>
+	<script src="elements/webswing-menubar.js"></script>
+	<script src="elements/webswing-spinner.js"></script>
+	<script src="elements/webswing-formattedtextfield.js"></script>
+	<script src="elements/webswing-radiobuttonmenuitem.js"></script>
+	<script src="elements/webswing-checkboxmenuitem.js"></script>
+	
+	<script src="index.js" data-webswing-global-var="webswing"></script>
+</body>
+
+</html>

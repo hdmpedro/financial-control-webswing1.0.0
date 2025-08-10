@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html class="ws-fullscreen" lang="en">
+<head>
+    <title>Webswing</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="index.css"/>
+    <link rel="icon" href="favicon.ico"/>
+</head>
+<body>
+
+<div id="main">
+	<div class="webswing-element" data-webswingselectorinstance="wsSelector">
+		<div class="webswing-element-content">
+			<div class="ws-modal-container">
+				<div id="commonDialog" class="ws-modal ws-selector-modal" role="dialog" aria-labelledby="commonDialog-title" aria-describedby="commonDialog-description">
+					<div class="ws-selector-top">
+						<div id="webswing-header" class="ws-selector-header"></div>
+						<div class="ws-selector-grow"></div>
+						<div id="webswing-links" class="ws-selector-admin"></div>
+					</div>
+					<div id="webswing-content" class="ws-selector-content"><div class="ws-spinner"><div class="ws-spinner-dot-1"></div> <div class="ws-spinner-dot-2"></div></div></div>
+					<div class="ws-selector-bottom">
+						<div id="feedbackDiv" class="hidden">
+							<div id="feedbackTitle"></div>
+							<div class="feedbackRating">
+								<div class="box">
+									<img class="icon" src="images/happy.png" alt="Awesome app" />
+								</div>
+								<div class="box">
+									<img class="icon" src="images/thinking.png" alt="Nice witchcraft, I'll investigate more" />
+								</div>
+								<div class="box">
+									<img class="icon" src="images/sad.png" alt="Doesn't work for my app" />
+								</div>
+								<div class="box">
+									<img class="icon" src="images/disappointed.png" alt="Not suitable for my use case" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="index.js"></script>
+<script src="javascript/webswing-selector.js"></script>
+
+</body>
+</html>
